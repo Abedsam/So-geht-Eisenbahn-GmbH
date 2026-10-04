@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lokführer werden – So geht Eisenbahn GmbH</title>
+  <meta name="description" content="Werde Lokführer:in (Triebfahrzeugführer) im Quereinstieg: 12 Monate Ausbildung in Gelsenkirchen und online, 100 % Jobgarantie, gefördert mit Bildungsgutschein.">
+  <meta name="theme-color" content="#000d10">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <div class="progress" aria-hidden="true"><span></span></div>
+
+  <!-- ============ NAVIGATION ============ -->
+  <header class="nav" id="top">
+    <a class="brand" href="#top" aria-label="So geht Eisenbahn – Startseite">
+      <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="7" y="2" width="3" height="28" rx="1.5"/><rect x="22" y="2" width="3" height="28" rx="1.5"/><rect x="4" y="6" width="24" height="3" rx="1.5"/><rect x="4" y="14.5" width="24" height="3" rx="1.5"/><rect x="4" y="23" width="24" height="3" rx="1.5"/></svg>
+      <span>so geht<br><b>eisenbahn</b></span>
+    </a>
+    <nav class="nav__links" aria-label="Hauptnavigation">
+      <a href="#beruf">Der Beruf</a>
+      <a href="#ablauf">Ablauf</a>
+      <a href="#voraussetzungen">Voraussetzungen</a>
+      <a href="#foerderung">Förderung</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn--dark nav__cta" href="#bewerben">Jetzt bewerben</a>
+    <button class="icon-btn nav__toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="menu">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <div class="menu" id="menu" hidden>
+    <nav aria-label="Mobile Navigation">
+      <a href="#beruf">Der Beruf</a>
+      <a href="#ablauf">Ablauf</a>
+      <a href="#voraussetzungen">Voraussetzungen</a>
+      <a href="#foerderung">Förderung</a>
+      <a href="#faq">FAQ</a>
+      <a href="#bewerben">Bewerben</a>
+    </nav>
+    <p class="menu__foot">Bahnhofstraße 74–76 · 45879 Gelsenkirchen<br><a href="mailto:hey@so-geht-eisenbahn.de">hey@so-geht-eisenbahn.de</a></p>
+  </div>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__sky" aria-hidden="true">
+        <span class="cloud cloud--a"></span><span class="cloud cloud--b"></span><span class="cloud cloud--c"></span>
+      </div>
+
+      <div class="hero__inner">
+        <p class="eyebrow hero__eyebrow" data-intro>Quereinstieg · Gelsenkirchen &amp; online</p>
+        <h1 class="hero__word" id="hero-title" aria-label="Lokführer werden.">
+          <span class="split" data-split>Lokführer</span>
+        </h1>
+        <div class="hero__aside">
+          <p class="hero__headline" data-intro>Dein Neustart.<br>Auf der Schiene.</p>
+          <p class="hero__lead" data-intro>In 12 Monaten zum Triebfahrzeugführer – mit 100&nbsp;% Jobgarantie und gefördert über den Bildungsgutschein.</p>
+          <div class="hero__cta" data-intro>
+            <a class="btn btn--dark magnetic" href="#bewerben">Jetzt bewerben <i class="arrow" aria-hidden="true"></i></a>
+            <a class="btn btn--ghost-dark magnetic" href="#ablauf">So läuft's ab</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Szene: Oberleitung, Zug, Gleis -->
+      <div class="scene" aria-hidden="true">
+        <svg class="scene__catenary" viewBox="-720 -60 3120 360" preserveAspectRatio="xMaxYMax meet">
+          <g class="mast" transform="translate(-650 0)"><rect x="-6" y="-60" width="12" height="335" /><rect x="-6" y="-46" width="90" height="6" /><line x1="84" y1="-40" x2="84" y2="14"/></g>
+          <g class="mast" transform="translate(300 0)"><rect x="-6" y="-60" width="12" height="335" /><rect x="-6" y="-46" width="90" height="6" /><line x1="84" y1="-40" x2="84" y2="14"/></g>
+          <g class="mast" transform="translate(1250 0)"><rect x="-6" y="-60" width="12" height="335" /><rect x="-6" y="-46" width="90" height="6" /><line x1="84" y1="-40" x2="84" y2="14"/></g>
+          <g class="mast" transform="translate(2200 0)"><rect x="-6" y="-60" width="12" height="335" /><rect x="-6" y="-46" width="90" height="6" /><line x1="84" y1="-40" x2="84" y2="14"/></g>
+          <path class="wire wire--carrier" d="M-2000,-34 Q-1525,-4 -1050,-34 T-100,-34 T850,-34 T1800,-34 T2750,-34 T3700,-34"/>
+          <line class="wire" x1="-2000" y1="14" x2="4400" y2="14"/>
+        </svg>
+
+        <div class="scene__drive">
+          <svg class="train" viewBox="-720 -60 3120 360" preserveAspectRatio="xMaxYMax meet">
+            <defs>
+              <linearGradient id="bodyGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#ffffff"/>
+                <stop offset=".55" stop-color="#f3f4f5"/>
+                <stop offset="1" stop-color="#d5d3d4"/>
+              </linearGradient>
+              <linearGradient id="glassGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#26303a"/>
+                <stop offset=".5" stop-color="#000d10"/>
+                <stop offset="1" stop-color="#151623"/>
+              </linearGradient>
+              <linearGradient id="shine" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+                <stop offset=".5" stop-color="#fff" stop-opacity=".55"/>
+                <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+              </linearGradient>
+              <clipPath id="locoClip"><path d="M1560,70 H2180 C2236,70 2268,82 2298,122 L2344,190 C2356,207 2350,222 2328,222 H1560 Z"/></clipPath>
+              <clipPath id="coachClip"><rect x="0" y="70" width="700" height="152" rx="20"/></clipPath>
+              <g id="bogie">
+                <rect x="-92" y="222" width="184" height="18" rx="6" class="ink"/>
+                <rect x="-70" y="238" width="140" height="10" rx="4" class="ink-2"/>
+                <g class="wheel" transform="translate(-48 254)"><circle r="20"/><circle r="8" class="hub"/><path d="M0,-18 V18 M-18,0 H18 M-12.7,-12.7 L12.7,12.7 M12.7,-12.7 L-12.7,12.7" class="spoke"/></g>
+                <g class="wheel" transform="translate(48 254)"><circle r="20"/><circle r="8" class="hub"/><path d="M0,-18 V18 M-18,0 H18 M-12.7,-12.7 L12.7,12.7 M12.7,-12.7 L-12.7,12.7" class="spoke"/></g>
+              </g>
+              <g id="coach">
+                <rect x="40" y="58" width="620" height="14" rx="7" fill="#d5d3d4"/>
+                <g clip-path="url(#coachClip)">
+                  <rect x="0" y="70" width="700" height="152" fill="url(#bodyGrad)"/>
+                  <rect x="0" y="186" width="700" height="36" class="ink"/>
+                  <rect x="0" y="176" width="700" height="4" class="ink"/>
+                  <rect x="70" y="98" width="110" height="52" rx="10" fill="url(#glassGrad)"/>
+                  <rect x="214" y="98" width="110" height="52" rx="10" fill="url(#glassGrad)"/>
+                  <rect x="376" y="98" width="110" height="52" rx="10" fill="url(#glassGrad)"/>
+                  <rect x="520" y="98" width="110" height="52" rx="10" fill="url(#glassGrad)"/>
+                  <rect x="336" y="92" width="28" height="94" rx="4" fill="none" stroke="#8e8e95" stroke-width="2"/>
+                </g>
+                <rect x="0" y="70" width="700" height="152" rx="20" fill="none" stroke="#d5d3d4" stroke-width="2"/>
+                <use href="#bogie" x="140"/>
+                <use href="#bogie" x="560"/>
+              </g>
+            </defs>
+
+            <!-- Wagen 3, 2, 1 -->
+            <use href="#coach" x="-600"/>
+            <rect x="100" y="120" width="20" height="60" class="ink-2"/>
+            <use href="#coach" x="120"/>
+            <rect x="820" y="120" width="20" height="60" class="ink-2"/>
+            <use href="#coach" x="840"/>
+            <rect x="1540" y="120" width="20" height="60" class="ink-2"/>
+
+            <!-- Lok -->
+            <g class="loco">
+              <rect x="1620" y="56" width="560" height="16" rx="8" fill="#d5d3d4"/>
+              <rect x="1690" y="44" width="120" height="14" rx="5" fill="#d5d3d4"/>
+              <g class="pantograph">
+                <path d="M1872,56 L1924,36 L1890,14 M1858,14 H1922" fill="none" stroke="#000d10" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+                <rect x="1862" y="50" width="40" height="8" rx="3" class="ink"/>
+              </g>
+              <g clip-path="url(#locoClip)">
+                <rect x="1560" y="60" width="800" height="170" fill="url(#bodyGrad)"/>
+                <path d="M1560,186 H2380 V230 H1560 Z" class="ink"/>
+                <path d="M1560,176 H2380 V180 H1560 Z" class="ink"/>
+                <!-- Stirnfenster -->
+                <path d="M2212,86 C2246,88 2270,100 2290,126 L2312,158 H2212 Z" fill="url(#glassGrad)"/>
+                <path d="M2236,92 L2262,150" stroke="url(#shine)" stroke-width="10" opacity=".5"/>
+                <!-- Seitenfenster & Tür -->
+                <rect x="2110" y="96" width="74" height="50" rx="8" fill="url(#glassGrad)"/>
+                <rect x="2050" y="90" width="40" height="96" rx="5" fill="none" stroke="#8e8e95" stroke-width="2"/>
+                <rect x="1600" y="96" width="74" height="50" rx="8" fill="url(#glassGrad)"/>
+                <rect x="1694" y="90" width="40" height="96" rx="5" fill="none" stroke="#8e8e95" stroke-width="2"/>
+                <!-- Lüftungsgitter -->
+                <g fill="#d5d3d4"><rect x="1790" y="104" width="220" height="5" rx="2"/><rect x="1790" y="116" width="220" height="5" rx="2"/><rect x="1790" y="128" width="220" height="5" rx="2"/><rect x="1790" y="140" width="220" height="5" rx="2"/></g>
+                <!-- Glanzlicht -->
+                <rect class="glint" x="1400" y="60" width="140" height="170" fill="url(#shine)" transform="skewX(-20)"/>
+              </g>
+              <path d="M1560,70 H2180 C2236,70 2268,82 2298,122 L2344,190 C2356,207 2350,222 2328,222 H1560 Z" fill="none" stroke="#d5d3d4" stroke-width="2"/>
+              <!-- Scheinwerfer -->
+              <circle class="headlight" cx="2326" cy="198" r="7"/>
+              <use href="#bogie" x="1720"/>
+              <use href="#bogie" x="2180"/>
+            </g>
+          </svg>
+        </div>
+        <div class="scene__rails"></div>
+      </div>
+
+      <ul class="hero__facts" data-intro>
+        <li><b>100&nbsp;%</b> Jobgarantie</li>
+        <li><b>12</b> Monate</li>
+        <li><b>0&nbsp;€</b> mit Bildungsgutschein</li>
+      </ul>
+    </section>
+
+    <!-- ============ TICKER ============ -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__track">
+        <span>Triebfahrzeugführer</span><span>100 % Jobgarantie</span><span>DEKRA-zertifizierte Prüfer</span><span>Bildungsgutschein</span><span>Gelsenkirchen &amp; online</span><span>Praxis bei Partner-EVU</span>
+        <span>Triebfahrzeugführer</span><span>100 % Jobgarantie</span><span>DEKRA-zertifizierte Prüfer</span><span>Bildungsgutschein</span><span>Gelsenkirchen &amp; online</span><span>Praxis bei Partner-EVU</span>
+      </div>
+    </div>
+
+    <!-- ============ DER BERUF ============ -->
+    <section class="section beruf" id="beruf" aria-labelledby="beruf-title">
+      <div class="wrap split-layout">
+        <div class="split-layout__label">
+          <p class="eyebrow reveal">01 — Der Beruf</p>
+        </div>
+        <div class="split-layout__body">
+          <h2 class="h-lg reveal" id="beruf-title">Ein Beruf, der Deutschland bewegt.</h2>
+          <p class="lead reveal">Lokführer:innen sind gesucht wie nie. Bei der So geht Eisenbahn GmbH wirst du in rund einem Jahr praxisnah zum Triebfahrzeugführer ausgebildet – auch ohne Vorkenntnisse, als Quereinsteiger:in.</p>
+
+          <div class="features">
+            <article class="feature reveal">
+              <svg class="feature__icon" viewBox="0 0 40 40" aria-hidden="true"><path d="M8 21l8 8L32 11"/></svg>
+              <h3>100&nbsp;% Jobgarantie</h3>
+              <p>Durch die Kooperation mit Partner-Eisenbahnverkehrsunternehmen steigst du nach bestandener Prüfung direkt in den Job ein.</p>
+            </article>
+            <article class="feature reveal">
+              <svg class="feature__icon" viewBox="0 0 40 40" aria-hidden="true"><rect x="7" y="7" width="26" height="26" rx="4"/><path d="M7 16h26M16 16v17"/></svg>
+              <h3>Praxisnah &amp; vor Ort</h3>
+              <p>Theorie in Gelsenkirchen und online, Praxis direkt auf der Strecke – gut erreichbar und alltagstauglich organisiert.</p>
+            </article>
+            <article class="feature reveal">
+              <svg class="feature__icon" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="16" r="9"/><path d="M14 23l-3 11 9-4 9 4-3-11"/></svg>
+              <h3>DEKRA-zertifizierte Prüfer</h3>
+              <p>Du lernst bei erfahrenen Ausbilder:innen und wirst von zertifizierten Prüfer:innen sicher durch die Prüfung begleitet.</p>
+            </article>
+            <article class="feature reveal">
+              <svg class="feature__icon" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 6v28M28 12H16a5 5 0 000 10h8a5 5 0 010 10H11"/></svg>
+              <h3>Attraktiver Verdienst</h3>
+              <p>Ein krisensicherer Beruf mit attraktiven Verdienstmöglichkeiten und umfangreichen Sozialleistungen.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ZAHLEN ============ -->
+    <section class="stats" aria-label="Die Ausbildung in Zahlen">
+      <div class="wrap stats__grid">
+        <div class="stat reveal"><span class="stat__num"><span data-count="100">0</span><small>%</small></span><span class="stat__label">Jobgarantie nach bestandener Prüfung</span></div>
+        <div class="stat reveal"><span class="stat__num"><span data-count="12">0</span></span><span class="stat__label">Monate bis zum Führerstand</span></div>
+        <div class="stat reveal"><span class="stat__num"><span data-count="0">0</span><small>€</small></span><span class="stat__label">Eigenanteil mit Bildungsgutschein</span></div>
+        <div class="stat reveal"><span class="stat__num"><span data-count="2">0</span></span><span class="stat__label">Lernorte: Gelsenkirchen &amp; online</span></div>
+      </div>
+    </section>
+
+    <!-- ============ ABLAUF ============ -->
+    <section class="section ablauf" id="ablauf" aria-labelledby="ablauf-title">
+      <div class="wrap">
+        <div class="ablauf__head">
+          <p class="eyebrow reveal">02 — Ablauf</p>
+          <h2 class="h-xl reveal" id="ablauf-title">Sieben Stationen bis zum Führerstand.</h2>
+        </div>
+
+        <div class="route">
+          <div class="route__track" aria-hidden="true">
+            <div class="route__rail"></div>
+            <div class="route__fill"></div>
+            <svg class="route__loco" viewBox="0 0 40 90"><rect x="6" y="4" width="28" height="82" rx="12" fill="#000d10"/><rect x="11" y="10" width="18" height="14" rx="5" fill="#8e8e95"/><rect x="11" y="32" width="18" height="40" rx="3" fill="#151623"/><circle cx="14" cy="80" r="2.5" fill="#fff"/><circle cx="26" cy="80" r="2.5" fill="#fff"/></svg>
+          </div>
+
+          <ol class="stations">
+            <li class="station">
+              <span class="station__dot" aria-hidden="true"></span>
+              <span class="station__no">Station 01</span>
+              <h3>Infoveranstaltung</h3>
+              <p>Lerne uns kennen: Jeden Montag um 15:30 Uhr stellen wir die Ausbildung vor und beantworten alle deine Fragen.</p>
+            </li>
+            <li class="station">
+              <span class="station__dot" aria-hidden="true"></span>
+              <span class="station__no">Station 02</span>
+              <h3>Bewerbung &amp; Beratung</h3>
+              <p>Du bewirbst dich bei uns, wir prüfen gemeinsam die Voraussetzungen und planen deinen Kursstart.</p>
+            </li>
+            <li class="station">
+              <span class="station__dot" aria-hidden="true"></span>
+              <span class="station__no">Station 03</span>
+              <h3>Eignungsuntersuchung</h3>
+              <p>Eine medizinische und eine psychologische Tauglichkeitsuntersuchung bestätigen, dass du fit für den Führerstand bist.</p>
+            </li>
+            <li class="station">
+              <span class="station__dot" aria-hidden="true"></span>
+              <span class="station__no">Station 04</span>
+              <h3>Bildungsgutschein</h3>
+              <p>Mit dem Bildungsgutschein der Agentur für Arbeit oder des Jobcenters werden die Kosten der Weiterbildung übernommen.</p>
+            </li>
+            <li class="station">
+              <span class="station__dot" aria-hidden="true"></span>
+              <span class="station__no">Station 05</span>
+              <h3>Theorie</h3>
+              <p>Betriebsdienst, Fahrzeugtechnik, Signale und Regelwerk – in unseren Räumen in Gelsenkirchen und online.</p>
+            </li>
+            <li class="station">
+              <span class="station__dot" aria-hidden="true"></span>
+              <span class="station__no">Station 06</span>
+              <h3>Praxis auf der Strecke</h3>
+              <p>Fahrpraxis bei unseren Partner-Eisenbahnverkehrsunternehmen – begleitet von erfahrenen Lokführer:innen.</p>
+            </li>
+            <li class="station">
+              <span class="station__dot" aria-hidden="true"></span>
+              <span class="station__no">Station 07</span>
+              <h3>Prüfung &amp; Jobstart</h3>
+              <p>Schriftliche und mündliche Abschlussprüfung (Anlagen 6/7) – danach geht es nahtlos in den Job als Triebfahrzeugführer.</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ VORAUSSETZUNGEN (dunkel) ============ -->
+    <section class="section dark" id="voraussetzungen" aria-labelledby="vor-title">
+      <div class="wrap split-layout">
+        <div class="split-layout__label">
+          <p class="eyebrow reveal">03 — Voraussetzungen</p>
+          <div class="cab reveal" aria-hidden="true">
+            <svg viewBox="0 0 320 220">
+              <defs><linearGradient id="dusk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1d2033"/><stop offset="1" stop-color="#3a3340"/></linearGradient></defs>
+              <path d="M20 20 H300 L280 140 H40 Z" fill="url(#dusk)"/>
+              <path class="cab__rail" d="M150 140 L158 60 M170 140 L162 60" stroke="#8e8e95" stroke-width="2"/>
+              <circle cx="160" cy="58" r="3" fill="#d5d3d4" class="cab__signal"/>
+              <path d="M20 20 H300 L280 140 H40 Z" fill="none" stroke="#d5d3d4" stroke-width="3"/>
+              <path d="M0 150 H320 V220 H0 Z" fill="#151623"/>
+              <rect x="40" y="166" width="70" height="30" rx="6" fill="none" stroke="#8e8e95" stroke-width="2"/>
+              <rect x="125" y="162" width="70" height="38" rx="6" fill="none" stroke="#d5d3d4" stroke-width="2"/>
+              <path d="M140 190 A20 20 0 0 1 180 190" fill="none" stroke="#fff" stroke-width="3" class="cab__gauge"/>
+              <rect x="210" y="166" width="70" height="30" rx="6" fill="none" stroke="#8e8e95" stroke-width="2"/>
+            </svg>
+          </div>
+        </div>
+        <div class="split-layout__body">
+          <h2 class="h-lg reveal" id="vor-title">Was du mitbringst.</h2>
+          <ul class="reqs">
+            <li class="reveal"><span>01</span><div><h3>Mindestens 20 Jahre alt</h3><p>Der Einstieg in die Ausbildung ist ab einem Alter von 20 Jahren möglich.</p></div></li>
+            <li class="reveal"><span>02</span><div><h3>Schulabschluss oder Ausbildung</h3><p>Mindestens Hauptschulabschluss oder eine abgeschlossene Berufsausbildung.</p></div></li>
+            <li class="reveal"><span>03</span><div><h3>Deutsch auf B1-Niveau</h3><p>Gute Deutschkenntnisse für Funk, Regelwerk und Prüfung.</p></div></li>
+            <li class="reveal"><span>04</span><div><h3>Medizinisch &amp; psychologisch geeignet</h3><p>Du bestehst die Tauglichkeitsuntersuchungen für den Bahnbetrieb.</p></div></li>
+            <li class="reveal"><span>05</span><div><h3>Zuverlässig &amp; schichtbereit</h3><p>Pünktlichkeit, Verantwortungsbewusstsein und Bereitschaft zum Schichtdienst.</p></div></li>
+            <li class="reveal"><span>06</span><div><h3>Auszug aus dem Fahreignungsregister</h3><p>Ein aktueller Auszug („Punkte in Flensburg“) gehört zu den Unterlagen.</p></div></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FÖRDERUNG & KURSSTART ============ -->
+    <section class="section foerderung" id="foerderung" aria-labelledby="foe-title">
+      <div class="wrap">
+        <p class="eyebrow reveal">04 — Förderung &amp; Kursstart</p>
+        <div class="offer">
+          <article class="clay reveal">
+            <p class="clay__tag">Bildungsgutschein</p>
+            <h2 class="clay__title" id="foe-title">0&nbsp;€ für dich.</h2>
+            <p>Die Ausbildung zum Triebfahrzeugführer ist förderfähig. Mit einem Bildungsgutschein der Agentur für Arbeit oder des Jobcenters werden die Weiterbildungskosten vollständig übernommen. Wir unterstützen dich beim Antrag.</p>
+            <a class="btn btn--ghost magnetic" href="#bewerben">Beratung anfragen <i class="arrow" aria-hidden="true"></i></a>
+          </article>
+
+          <article class="dates reveal">
+            <h3 class="h-md">Nächste Termine.</h3>
+            <ul class="dates__list">
+              <li><span class="dates__label">Kursstart</span><b>02.11.2026</b><span class="pill">Nächster Start</span></li>
+              <li><span class="dates__label">Infoveranstaltung</span><b>Jeden Montag</b><span class="pill pill--muted">15:30 Uhr</span></li>
+              <li><span class="dates__label">Dauer</span><b>ca. 12 Monate</b><span class="pill pill--muted">Theorie + Praxis</span></li>
+              <li><span class="dates__label">Ort</span><b>Gelsenkirchen</b><span class="pill pill--muted">+ online</span></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="section faq" id="faq" aria-labelledby="faq-title">
+      <div class="wrap split-layout">
+        <div class="split-layout__label">
+          <p class="eyebrow reveal">05 — FAQ</p>
+          <h2 class="h-lg reveal" id="faq-title">Häufige Fragen.</h2>
+        </div>
+        <div class="split-layout__body">
+          <div class="accordion">
+            <details class="reveal" open>
+              <summary>Brauche ich Vorkenntnisse aus der Bahn?<i aria-hidden="true"></i></summary>
+              <div><p>Nein. Die Ausbildung ist für Quereinsteiger:innen konzipiert. Wichtig sind die formalen Voraussetzungen, technisches Interesse und Verlässlichkeit.</p></div>
+            </details>
+            <details class="reveal">
+              <summary>Was kostet mich die Ausbildung?<i aria-hidden="true"></i></summary>
+              <div><p>Mit einem Bildungsgutschein der Agentur für Arbeit oder des Jobcenters werden die Kosten der Weiterbildung übernommen. Wir beraten dich gern, wie du den Gutschein beantragst.</p></div>
+            </details>
+            <details class="reveal">
+              <summary>Wie lange dauert die Ausbildung?<i aria-hidden="true"></i></summary>
+              <div><p>Rund 12 Monate. Die Theorie findet in Gelsenkirchen und online statt, die Praxis bei unseren Partner-Eisenbahnverkehrsunternehmen.</p></div>
+            </details>
+            <details class="reveal">
+              <summary>Was bedeutet 100&nbsp;% Jobgarantie?<i aria-hidden="true"></i></summary>
+              <div><p>Nach erfolgreich bestandener Prüfung vermitteln wir dich über unsere Partner-Eisenbahnverkehrsunternehmen direkt in eine Anstellung als Triebfahrzeugführer.</p></div>
+            </details>
+            <details class="reveal">
+              <summary>Welche Prüfungen erwarten mich?<i aria-hidden="true"></i></summary>
+              <div><p>Vor Beginn die medizinische und psychologische Eignungsuntersuchung, am Ende die schriftliche und mündliche Abschlussprüfung nach den Anlagen 6/7 sowie die praktische Prüfung.</p></div>
+            </details>
+            <details class="reveal">
+              <summary>Wie bewerbe ich mich?<i aria-hidden="true"></i></summary>
+              <div><p>Komm einfach montags um 15:30 Uhr zur Infoveranstaltung oder schreib uns über das Formular unten bzw. an <a href="mailto:hey@so-geht-eisenbahn.de">hey@so-geht-eisenbahn.de</a>.</p></div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BEWERBEN ============ -->
+    <section class="section apply" id="bewerben" aria-labelledby="apply-title">
+      <div class="wrap apply__grid">
+        <div>
+          <p class="eyebrow eyebrow--light reveal">06 — Bewerben</p>
+          <h2 class="h-xl reveal" id="apply-title">Bereit für die Abfahrt.</h2>
+          <p class="lead lead--light reveal">Schick uns deine Anfrage – wir melden uns innerhalb kurzer Zeit und laden dich zur nächsten Infoveranstaltung ein.</p>
+          <address class="contact reveal">
+            <span>So geht Eisenbahn GmbH</span>
+            <span>Bahnhofstraße 74–76, 45879 Gelsenkirchen</span>
+            <a href="mailto:hey@so-geht-eisenbahn.de">hey@so-geht-eisenbahn.de</a>
+          </address>
+        </div>
+
+        <form class="form reveal" id="apply-form" novalidate>
+          <label><span>Name</span><input name="name" autocomplete="name" required></label>
+          <label><span>E-Mail</span><input name="email" type="email" autocomplete="email" required></label>
+          <label><span>Telefon</span><input name="phone" type="tel" autocomplete="tel"></label>
+          <label><span>Ich interessiere mich für</span>
+            <select name="topic">
+              <option>Kursstart 02.11.2026</option>
+              <option>Infoveranstaltung (montags, 15:30 Uhr)</option>
+              <option>Beratung zum Bildungsgutschein</option>
+            </select>
+          </label>
+          <label class="form__full"><span>Nachricht</span><textarea name="message" rows="3" placeholder="Erzähl uns kurz von dir …"></textarea></label>
+          <button class="btn btn--light magnetic form__full" type="submit">Anfrage senden <i class="arrow" aria-hidden="true"></i></button>
+          <p class="form__note form__full" role="status" aria-live="polite">Beim Absenden öffnet sich dein E-Mail-Programm mit deiner vorbereiteten Anfrage.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="wrap">
+      <p class="footer__word" aria-hidden="true">so geht eisenbahn.</p>
+      <div class="footer__cols">
+        <div><h4>Ausbildungen</h4><a href="#top">Triebfahrzeugführer</a><a href="https://so-geht-eisenbahn.de/ausbildungen/">Alle Ausbildungen</a><a href="https://so-geht-eisenbahn.de/weiterbildungen/">Weiterbildungen</a></div>
+        <div><h4>Kontakt</h4><span>Bahnhofstraße 74–76</span><span>45879 Gelsenkirchen</span><a href="mailto:hey@so-geht-eisenbahn.de">hey@so-geht-eisenbahn.de</a></div>
+        <div><h4>Rechtliches</h4><a href="https://so-geht-eisenbahn.de/impressum/">Impressum</a><a href="https://so-geht-eisenbahn.de/datenschutz/">Datenschutz</a></div>
+      </div>
+      <div class="footer__base"><span>© <span id="year">2026</span> So geht Eisenbahn GmbH</span><a href="#top" class="footer__top">Nach oben ↑</a></div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
