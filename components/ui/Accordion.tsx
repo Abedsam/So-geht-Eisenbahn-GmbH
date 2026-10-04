@@ -24,7 +24,7 @@ export function Accordion({ items, defaultOpen = 0, variant = "cards", className
 
   const cards = variant === "cards";
   return (
-    <div className={`flex flex-col ${cards ? "gap-3" : ""} ${className}`}>
+    <div data-keys className={`flex flex-col ${cards ? "gap-2" : ""} ${className}`}>
       {items.map((item, i) => {
         const isOpen = open === i;
         return (
@@ -47,7 +47,7 @@ export function Accordion({ items, defaultOpen = 0, variant = "cards", className
                 aria-controls={`${id}-panel-${i}`}
                 onClick={() => setOpen(isOpen ? null : i)}
                 onKeyDown={(e) => onKey(e, i)}
-                className={`flex w-full items-center justify-between gap-4 text-left font-semibold text-ink ${cards ? "px-5 py-4 md:px-6 md:py-5" : "py-5"}`}
+                className={`flex w-full items-center justify-between gap-3 text-left text-[0.92rem] font-semibold text-ink sm:text-base ${cards ? "px-4 py-3 md:px-5 md:py-3.5" : "py-4"}`}
               >
                 <span className="flex flex-wrap items-center gap-2">
                   {item.title}
@@ -72,7 +72,7 @@ export function Accordion({ items, defaultOpen = 0, variant = "cards", className
               inert={!isOpen}
             >
               <div className="overflow-hidden">
-                <div className={`text-ink/80 ${cards ? "px-5 pb-5 md:px-6" : "pb-6"}`}>{item.content}</div>
+                <div className={`text-sm text-ink/80 sm:text-[0.95rem] ${cards ? "px-4 pb-4 md:px-5" : "pb-5"}`}>{item.content}</div>
               </div>
             </div>
           </div>

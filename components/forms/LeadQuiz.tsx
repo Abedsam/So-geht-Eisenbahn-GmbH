@@ -64,9 +64,9 @@ export function LeadQuiz() {
         <span className="grid size-16 place-items-center rounded-full bg-accent text-ink" aria-hidden="true">
           <Check className="size-8" strokeWidth={3} />
         </span>
-        <h3 ref={headingRef} tabIndex={-1} className="text-2xl font-bold text-petrol outline-none md:text-3xl">
+        <h2 ref={headingRef} tabIndex={-1} className="text-2xl font-bold text-petrol outline-none md:text-3xl">
           Danke, {values.name?.split(" ")[0]}! Deine Bewerbung ist da.
-        </h3>
+        </h2>
         <p className="max-w-md text-ink/80">Wir melden uns in Kürze telefonisch bei dir und besprechen die nächsten Schritte – ganz unverbindlich.</p>
       </div>
     );
@@ -89,9 +89,9 @@ export function LeadQuiz() {
       {current ? (
         <fieldset key={current.name} className="animate-fade-up">
           <legend className="w-full">
-            <h3 ref={headingRef} tabIndex={-1} className="text-center font-sans text-xl font-bold text-ink outline-none md:text-2xl">
+            <h2 ref={headingRef} tabIndex={-1} className="text-center font-sans text-xl font-bold text-ink outline-none md:text-2xl">
               {step + 1}. {current.question}
-            </h3>
+            </h2>
             <span className="mt-2 block text-center text-ink/70">Bitte wähle eine Option aus:</span>
           </legend>
           <div className={`mt-6 grid gap-3 ${current.options.length === 3 ? "md:grid-cols-3" : "mx-auto max-w-xl md:grid-cols-2"}`}>
@@ -117,9 +117,9 @@ export function LeadQuiz() {
       ) : (
         <fieldset className="animate-fade-up">
           <legend className="w-full">
-            <h3 ref={headingRef} tabIndex={-1} className="text-center font-sans text-xl font-bold text-ink outline-none md:text-2xl">
+            <h2 ref={headingRef} tabIndex={-1} className="text-center font-sans text-xl font-bold text-ink outline-none md:text-2xl">
               {TOTAL}. Fast geschafft! Wie erreichen wir dich?
-            </h3>
+            </h2>
           </legend>
           <div className="mx-auto mt-6 grid max-w-2xl gap-4 sm:grid-cols-2">
             <Field id="lead-name" label="Vor- und Nachname" required error={errors.name}>

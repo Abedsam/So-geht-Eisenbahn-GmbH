@@ -35,9 +35,9 @@ export function A11yMenu() {
   ];
 
   return (
-    <div className="fab fixed bottom-6 left-4 z-30 md:left-6">
+    <div className="relative">
       {open && (
-        <div id="a11y-panel" role="group" aria-label="Darstellung anpassen" className="absolute bottom-16 left-0 w-64 rounded-card border border-petrol-100 bg-white p-4 shadow-lift">
+        <div id="a11y-panel" role="group" aria-label="Darstellung anpassen" className="absolute right-0 top-12 z-[60] w-64 rounded-card border border-petrol-100 bg-white p-4 text-ink shadow-lift">
           <div className="mb-3 flex items-center justify-between">
             <p className="font-bold text-ink">Darstellung</p>
             <button type="button" onClick={() => setOpen(false)} aria-label="Schließen" className="grid size-8 place-items-center rounded-full hover:bg-petrol-50">
@@ -79,9 +79,9 @@ export function A11yMenu() {
         aria-expanded={open}
         aria-controls="a11y-panel"
         aria-label="Barrierefreiheit: Darstellung anpassen"
-        className="grid size-12 place-items-center rounded-full bg-ink text-white shadow-lift transition-transform hover:scale-105"
+        className="grid size-10 place-items-center rounded-full border border-white/20 text-white transition-colors hover:border-white"
       >
-        <Accessibility className="size-6" aria-hidden="true" />
+        <Accessibility className="size-5" aria-hidden="true" />
       </button>
     </div>
   );

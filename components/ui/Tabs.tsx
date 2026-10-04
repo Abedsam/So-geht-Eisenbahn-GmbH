@@ -27,7 +27,7 @@ export function Tabs({ items, label }: { items: TabItem[]; label: string }) {
 
   return (
     <div>
-      <div role="tablist" aria-label={label} className="flex gap-1 overflow-x-auto rounded-card bg-petrol-50 p-1" onKeyDown={onKey}>
+      <div role="tablist" data-keys aria-label={label} className="flex gap-1 overflow-x-auto rounded-card bg-petrol-50 p-1" onKeyDown={onKey}>
         {items.map((t, i) => (
           <button
             key={t.id}

@@ -27,50 +27,41 @@ NEXT_PUBLIC_FORM_ENDPOINT=https://formulare.example.de npm run build:static   # 
 Ein statischer Export kann keine POST-API-Routen enthalten. `scripts/build-static.mjs` legt `app/api` für den Build kurz beiseite;
 die Formulare senden dann an `NEXT_PUBLIC_FORM_ENDPOINT/<lead|contact|seminar-anmeldung>`.
 
-## Seiten
+## Konzept „Die Linie“
 
-| Route | Inhalt | Ansprache |
+Die Website wird **nicht gescrollt**: Jede Seite ist eine **Station** im Vollbild. Inhalte sind auf Stationen einer Linie verteilt –
+wie in einem Liniennetzplan. Die Fußleiste zeigt die aktuelle Linie mit allen Stationen; ein kleiner Zug fährt beim Wechsel zur neuen Station.
+
+- **Weiterfahren:** Button „Nächster Halt“, Mausrad/Trackpad, Pfeiltasten, Bild↑/↓, Wischen (links/rechts oder hoch/runter) auf Mobilgeräten
+- **Seitenwechsel:** animiert mit React `<ViewTransition>` (Next.js 16) – vorwärts fährt die neue Station von rechts ein, zurück von links
+- **Menü „Netzplan“:** alle Rubriken als farbige Linien mit ihren Stationen
+- Inhalte jeder Station blenden gestaffelt ein, Überschriften „fahren“ Wort für Wort ein, auf der Startseite der Landingpage fährt ein Zug ein
+- Passt eine Station auf sehr kleinen Bildschirmen nicht vollständig (z. B. Formulare), scrollt nur der Inhalt *innerhalb* der Station; erst am Rand geht es zur nächsten Station
+- `prefers-reduced-motion` schaltet alle Bewegungen ab
+
+Die Linien und Stationen sind in [`content/lines.ts`](content/lines.ts) gepflegt (Reihenfolge = Fahrtrichtung).
+
+## Linien und Stationen
+
+| Linie | Stationen | Ansprache |
 |---|---|---|
-| `/` | Startseite: Hero, Einstiegskarten, Vorteile, USP-Band, Video-Rundgang, Weiterbildungsbereiche, Partner, FAQ, CTA | Sie |
-| `/lokfuehrer-werden` | **Landingpage** mit Minimal-Header, Video, 5-stufigem Bewerbungs-Funnel, Benefits, Stellenbeschreibung, Profil, Testimonials, Team, FAQ, Sticky-CTA (mobil) | du |
-| `/ausbildungen` | Triebfahrzeugführer + Nachschulung Anlage 6/7 mit Tabs | Sie |
-| `/weiterbildungen` | Simulator-Training, RFU, Disposition, Eisenbahngrundlagen | Sie |
-| `/seminare`, `/seminare/etcs`, `/seminare/lzb` | Übersicht + gemeinsames `SeminarTemplate` mit Anmeldeformular | Sie |
-| `/infoveranstaltung` | 4 Infokarten + Anmeldung (nächste Montage werden automatisch berechnet) | Sie |
-| `/kooperationspartner` | 7 Partnerkarten (Logo-Platzhalter) | Sie |
-| `/ueber-uns` | Mission/Vision/Engagement, Leitbild, Werte, Team, Besonderheiten | Sie |
-| `/kontakt` | 3 Formular-Karten, Adresse, Karte (lädt erst nach Einwilligung) | Sie |
-| `/impressum`, `/datenschutz` | Platzhalterseiten | Sie |
-
-## Struktur
-
-```
-app/
-  (site)/           Seiten mit Ticker, Top-Bar, Header, Footer
-  (landing)/        Landingpage mit Minimal-Header und Sticky-CTA
-  api/              Platzhalter-Endpunkte: lead, contact, seminar-anmeldung
-  sitemap.ts, robots.ts, icon.svg, not-found.tsx
-components/
-  layout/           Ticker, TopBar, Header, Footer, MinimalHeader, BackToTop, CookieBanner, A11yMenu, StickyMobileCta, RevealObserver
-  sections/         Hero, UspBand, CertBar, PartnerBar, TeamGrid, TestimonialCard, SeminarTemplate, SplitImage, CtaBand, MapPlaceholder, LegalPage
-  forms/            LeadQuiz, ContactForm, SeminarForm, gemeinsame Felder
-  ui/               Button, Accordion, Tabs, VideoPlaceholder, CheckList, SectionHeading, Logo, JsonLd
-content/            Pflegbare Inhalte: site, team, partners, faq, seminars (inkl. Kurstermine), courses, landing, about
-lib/                zod-Schemas, SEO-Metadaten, JSON-LD, Datumslogik, Formular-Versand
-public/images/      Platzhalterbilder (placeholder-*.jpg)
-scripts/            Platzhalter-Generator, statischer Export
-drafts/             Erster HTML-Entwurf der Landingpage (Referenz)
-```
-
-Design-Tokens (Farben, Schriften, Radien) stehen in `tailwind.config.ts`; Ubuntu (Überschriften) und Montserrat (Fließtext) werden über `next/font` selbst gehostet.
+| **L1 Lokführer werden** (Landingpage, eigener Rahmen ohne Netzplan) | Start · Vorteile · Dein Job · Ausbildung · Profil · Stimmen · Team · FAQ · Bewerben (5-Schritt-Funnel) | du |
+| **S Start** | `/` · `/vorteile` · `/rundgang` · `/faq` | Sie |
+| **A Ausbildungen** | Übersicht · Triebfahrzeugführer · Nachschulung Anlage 6/7 (Tabs) | Sie |
+| **W Weiterbildungen** | Übersicht · Simulator · RFU · Disposition · Grundlagen | Sie |
+| **SE Seminare** | Übersicht · LZB · ETCS (je eine Station mit Tabs: Inhalte / Das sollten Sie wissen / Anmeldung) | Sie |
+| **I Infoveranstaltung** | Infokarten + Anmeldung (nächste Montage automatisch) | Sie |
+| **U Über uns** | Über uns · Leitbild · Werte · Team · Kooperationspartner | Sie |
+| **K Kontakt** | 3 Formulare in Tabs, Adresse, Karte nach Einwilligung | Sie |
+| **R Rechtliches** | Impressum · Datenschutz (Platzhalter) | Sie |
 
 ## Qualität
 
-- **Lighthouse (mobil, Produktions-Build):** alle 13 Seiten ≥ 90 in Performance, Accessibility, Best Practices und SEO (Accessibility/Best Practices/SEO jeweils 100).
-- **Barrierefreiheit:** WCAG-AA-Kontraste, sichtbare Fokus-Stile, „Zum Inhalt springen“, tastaturbedienbare Akkordeons (Pfeiltasten), Tabs und Quiz, Fokus-Management im Funnel, Barrierefreiheits-Menü (Schriftgröße, Zeilenabstand), `prefers-reduced-motion`.
-- **SEO:** eigene Titel/Beschreibung + Open Graph je Seite, `sitemap.xml`, `robots.txt`, JSON-LD (`EducationalOrganization`, `FAQPage`, `Course` für Seminare, `EducationalOccupationalProgram` mit Gehaltsangabe für die Landingpage).
-- **Datenschutz:** Cookie-Banner mit gleichwertigen Buttons „Nur notwendige“ / „Alle akzeptieren“; Google Maps und Videos laden erst nach Einwilligung bzw. Klick.
-- **Formulare:** clientseitige und serverseitige Validierung mit denselben zod-Schemas, Pflicht-Checkbox Datenschutz, Honeypot gegen Spam, Erfolgs-/Fehlermeldungen.
+- **Lighthouse (mobil, Produktions-Build):** Performance 93–99, Accessibility, Best Practices und SEO jeweils 100 (Stichprobe über alle Linien).
+- **Barrierefreiheit:** WCAG-AA-Kontraste, sichtbare Fokus-Stile, „Zum Inhalt springen“, tastaturbedienbare Navigation (Pfeiltasten), Akkordeons, Tabs und Quiz, Fokus-Management im Funnel, Barrierefreiheits-Menü (Schriftgröße, Zeilenabstand), reduzierte Bewegung.
+- **SEO:** jede Station ist eine eigene URL mit Titel/Beschreibung + Open Graph, `sitemap.xml` (aus dem Liniennetz erzeugt), `robots.txt`, JSON-LD (`EducationalOrganization`, `FAQPage`, `Course`, `EducationalOccupationalProgram`).
+- **Datenschutz:** Cookie-Banner mit gleichwertigen Buttons; Karte und Videos laden erst nach Einwilligung bzw. Klick.
+- **Formulare:** gleiche zod-Schemas im Browser und in `/api/*`, Pflicht-Checkbox Datenschutz, Honeypot, Erfolgs-/Fehlermeldungen.
 
 ## TODOs für den Livegang
 

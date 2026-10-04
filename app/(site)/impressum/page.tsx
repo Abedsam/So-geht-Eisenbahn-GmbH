@@ -1,4 +1,4 @@
-import { LegalPage } from "@/components/sections/LegalPage";
+import { LegalScreen } from "@/components/stage/LegalScreen";
 import { site } from "@/content/site";
 import { pageMetadata } from "@/lib/seo";
 
@@ -6,7 +6,7 @@ export const metadata = pageMetadata({ title: "Impressum", description: "Impress
 
 export default function ImpressumPage() {
   return (
-    <LegalPage title="Impressum">
+    <LegalScreen title="Impressum">
       <h2>Angaben gemäß § 5 DDG</h2>
       <p>
         {site.name}
@@ -23,10 +23,8 @@ export default function ImpressumPage() {
       </p>
       <h2>Vertreten durch</h2>
       <p>TODO: Geschäftsführung</p>
-      <h2>Registereintrag</h2>
-      <p>TODO: Registergericht und Registernummer</p>
-      <h2>Umsatzsteuer-ID</h2>
-      <p>TODO: USt-IdNr.</p>
-    </LegalPage>
+      <h2>Registereintrag und Umsatzsteuer-ID</h2>
+      <p>TODO: Registergericht, Registernummer, USt-IdNr.</p>
+    </LegalScreen>
   );
 }

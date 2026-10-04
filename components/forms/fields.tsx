@@ -13,7 +13,7 @@ export function Field({ id, label, error, required, hint, children, className = 
     <div className={`flex flex-col gap-1.5 ${className}`}>
       <label htmlFor={id} className="text-sm font-semibold text-ink">
         {label}
-        {required ? <span aria-hidden="true" className="text-accent-dark"> *</span> : <span className="font-normal text-ink/75"> (optional)</span>}
+        {required ? <span aria-hidden="true" className="text-accent-ink"> *</span> : <span className="font-normal text-ink/75"> (optional)</span>}
       </label>
       {children}
       {hint && !error && (
@@ -51,7 +51,7 @@ export function PrivacyCheckbox({ id, error, ...rest }: PrivacyProps) {
             Datenschutzerklärung
           </Link>{" "}
           gelesen und stimme der Verarbeitung meiner Daten zur Bearbeitung meiner Anfrage zu.
-          <span aria-hidden="true" className="text-accent-dark"> *</span>
+          <span aria-hidden="true" className="text-accent-ink"> *</span>
         </span>
       </label>
       {error?.message && (

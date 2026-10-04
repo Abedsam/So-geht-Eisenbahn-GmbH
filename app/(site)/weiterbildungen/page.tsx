@@ -1,90 +1,53 @@
-import { ArrowRight, Check } from "lucide-react";
-import { CtaBand } from "@/components/sections/CtaBand";
-import { Hero } from "@/components/sections/Hero";
-import { SplitImage } from "@/components/sections/SplitImage";
-import { UspBand } from "@/components/sections/UspBand";
-import { LinkButton } from "@/components/ui/Button";
-import { CheckList } from "@/components/ui/CheckList";
-import { trainings } from "@/content/courses";
+import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
+import { In, Screen, Words } from "@/components/stage/Screen";
+import { TLink } from "@/components/stage/TLink";
+import { trainingAreas, trainings } from "@/content/courses";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Weiterbildungen für Eisenbahnunternehmen und Triebfahrzeugführer",
-  description:
-    "Simulator-Training im Zusi-Simulator, Fortbildungsunterricht (RFU), Disposition und Eisenbahngrundlagen – praxisnahe Weiterbildungen der So geht Eisenbahn GmbH.",
+  description: "Simulator-Training im Zusi-Simulator, Fortbildungsunterricht (RFU), Disposition und Eisenbahngrundlagen – praxisnahe Weiterbildungen der So geht Eisenbahn GmbH.",
   path: "/weiterbildungen",
 });
 
-const offer = [
-  "Originalgetreuer Zusi-Simulator in Gelsenkirchen",
-  "DEKRA-zertifizierte Prüfer und erfahrene Dozenten",
-  "Flexible Termine – vor Ort oder online",
-  "Maßgeschneiderte Inhalte für Eisenbahnverkehrsunternehmen",
-];
-
-export default function WeiterbildungenPage() {
+export default function Weiterbildungen() {
   return (
-    <>
-      <Hero
-        eyebrow="Weiterbildungen"
-        title="Weiterbildungen"
-        text="Fachspezifische Kurse für Triebfahrzeugführer und maßgeschneiderte Angebote für Geschäftskunden – vom Simulatortraining bis zur Disposition."
-        image={{ src: "/images/placeholder-wb-simulator.jpg", alt: "Zusi-Simulator mit Vectron-Führerstand" }}
-        aside={
-          <div className="rounded-card bg-white/10 p-6 ring-1 ring-white/25 backdrop-blur-md md:p-8">
-            <p className="mb-4 font-heading text-xl font-bold text-white">Unser Angebot</p>
-            <CheckList items={offer} light />
+    <Screen tone="petrol" width="wide">
+      <div className="flex flex-col gap-[clamp(1rem,3.5vh,2.5rem)]">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <In i={0}>
+              <p className="kicker text-white/85">Linie W · Weiterbildungen</p>
+            </In>
+            <Words text="Weiterbildung für jede Etappe." className="title-xl mt-3 text-white" />
           </div>
-        }
-        actions={
-          <LinkButton href="/kontakt" size="lg">
-            Angebot anfragen <ArrowRight className="size-4" aria-hidden="true" />
-          </LinkButton>
-        }
-      />
-
-      <nav aria-label="Weiterbildungen auf dieser Seite" className="sticky top-[4.5rem] z-20 border-b border-petrol-100 bg-white/95 backdrop-blur">
-        <ul className="container-page flex gap-2 overflow-x-auto py-3">
-          {trainings.map((t) => (
-            <li key={t.id}>
-              <a href={`#${t.id}`} className="block whitespace-nowrap rounded-full border border-petrol-100 px-4 py-1.5 text-sm font-semibold text-petrol transition-colors hover:border-petrol hover:bg-petrol hover:text-white">
-                {t.title.split(" (")[0]}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
-
-      <div className="section">
-        <div className="container-page flex flex-col gap-20 md:gap-28">
-          {trainings.map((t, i) => (
-            <SplitImage key={t.id} id={t.id} image={{ src: t.image, alt: t.imageAlt }} imageSide={i % 2 ? "right" : "left"}>
-              <p className="eyebrow">Weiterbildung {String(i + 1).padStart(2, "0")}</p>
-              <h2 className="text-3xl font-bold md:text-4xl">{t.title}</h2>
-              <p className="text-lg text-ink/80">{t.text}</p>
-              {t.points && (
-                <div className="grid gap-3 sm:grid-cols-2">
-                  {t.points.map((p) => (
-                    <div key={p.title} className="rounded-card bg-surface p-5">
-                      <p className="mb-1 flex items-start gap-2 font-bold text-petrol">
-                        <Check className="size-5 shrink-0 text-accent-dark" strokeWidth={3} aria-hidden="true" />
-                        {p.title}
-                      </p>
-                      <p className="text-sm text-ink/75">{p.text}</p>
-                    </div>
-                  ))}
-                </div>
-              )}
-              <LinkButton href="/kontakt" variant="outline-dark" className="self-start">
-                Anfrage stellen
-              </LinkButton>
-            </SplitImage>
+          <In i={2} className="hidden flex-wrap gap-2 sm:flex">
+            {trainings.map((t) => (
+              <TLink key={t.id} href={`/weiterbildungen/${t.id}`} className="rounded-full border border-white/30 px-3 py-1.5 text-sm font-semibold text-white transition-colors hover:border-white hover:bg-white hover:text-petrol">
+                {t.title.split(" (")[0].replace(" für Triebfahrzeugführer", "")}
+              </TLink>
+            ))}
+          </In>
+        </div>
+        <div className="grid gap-3 md:grid-cols-3 md:gap-5">
+          {trainingAreas.map((a, i) => (
+            <In key={a.title} i={i + 3}>
+              <TLink href={a.href} className="group flex h-full flex-row overflow-hidden rounded-[18px] bg-white text-ink md:flex-col">
+                <span className="relative w-28 shrink-0 overflow-hidden md:aspect-[16/9] md:w-auto [@media(max-height:760px)]:md:aspect-[3/1]">
+                  <Image src={a.image} alt="" fill sizes="(min-width: 768px) 30vw, 30vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                </span>
+                <span className="flex flex-1 flex-col gap-1 p-4 md:p-5">
+                  <span className="text-xs font-bold uppercase tracking-[0.14em] text-accent-ink">{a.audience}</span>
+                  <span className="font-heading text-lg font-bold text-petrol md:text-xl">{a.title}</span>
+                  <span className="text-sm text-ink/75">{a.text}</span>
+                  <ArrowUpRight className="mt-auto hidden size-5 self-end text-petrol transition-transform group-hover:rotate-45 md:block" aria-hidden="true" />
+                </span>
+              </TLink>
+            </In>
           ))}
         </div>
       </div>
-
-      <UspBand />
-      <CtaBand title="Sie suchen eine Schulung für Ihr Team?" text="Wir stellen Ihnen ein Angebot zusammen, das zu Ihren Fahrzeugen, Strecken und Abläufen passt." cta="Jetzt Kontakt aufnehmen" href="/kontakt" />
-    </>
+    </Screen>
   );
 }

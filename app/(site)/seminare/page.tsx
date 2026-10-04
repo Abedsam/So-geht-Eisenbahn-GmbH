@@ -1,8 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight, CalendarDays, Clock, Euro } from "lucide-react";
-import { CertBar } from "@/components/sections/CertBar";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { ArrowUpRight, CalendarDays, Clock, Euro } from "lucide-react";
+import { In, Screen, StationNumber, Words } from "@/components/stage/Screen";
+import { TLink } from "@/components/stage/TLink";
 import { getSeminar } from "@/content/seminars";
 import { pageMetadata } from "@/lib/seo";
 
@@ -12,46 +11,49 @@ export const metadata = pageMetadata({
   path: "/seminare",
 });
 
-export default function SeminarePage() {
-  // Reihenfolge wie im Original: LZB zuerst
-  const list = (["lzb", "etcs"] as const).map(getSeminar);
+export default function Seminare() {
+  const list = (["lzb", "etcs"] as const).map((s) => getSeminar(s));
   return (
-    <>
-      <section className="section bg-surface pb-10 md:pb-12">
-        <div className="container-page">
-          <SectionHeading as="h1" align="center" eyebrow="Seminare" title="Seminare für Triebfahrzeugführer" text="Kompakte Weiterbildungen zu Zugbeeinflussungssystemen – Theorie online oder in Präsenz, Praxis an unserem Simulator in Gelsenkirchen." />
+    <Screen tone="light" width="wide" backdrop={<StationNumber n={5} />}>
+      <div className="flex flex-col gap-[clamp(1rem,3.5vh,2.5rem)]">
+        <div>
+          <In i={0}>
+            <p className="kicker text-petrol">Linie SE · Seminare</p>
+          </In>
+          <Words text="Seminare für Triebfahrzeugführer." className="title-xl mt-3 text-petrol" />
         </div>
-      </section>
-      <section className="pb-16 md:pb-24 bg-surface">
-        <div className="container-page grid gap-6 md:grid-cols-2">
+        <div className="grid gap-4 md:grid-cols-2 md:gap-6">
           {list.map((s, i) => (
-            <Link key={s.slug} href={`/seminare/${s.slug}`} className="reveal group flex flex-col overflow-hidden rounded-card bg-white shadow-card transition-shadow hover:shadow-lift">
-              <div className="relative aspect-[16/9] overflow-hidden">
-                <Image src={s.cardImage} alt={s.heroAlt} fill loading="eager" fetchPriority={i === 0 ? "high" : "auto"} sizes="(min-width: 768px) 50vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
-              </div>
-              <div className="flex flex-1 flex-col gap-4 p-6 md:p-8">
-                <h2 className="text-2xl font-bold">{s.title}</h2>
-                <p className="flex-1 text-ink/80">{s.teaser}</p>
-                <ul className="flex flex-wrap gap-2 text-sm">
-                  <li className="inline-flex items-center gap-1.5 rounded-full bg-petrol-50 px-3 py-1 font-semibold text-petrol">
-                    <Clock className="size-4" aria-hidden="true" /> {s.durationDays} Tage inkl. Prüfung
-                  </li>
-                  <li className="inline-flex items-center gap-1.5 rounded-full bg-petrol-50 px-3 py-1 font-semibold text-petrol">
-                    <Euro className="size-4" aria-hidden="true" /> {s.priceEur.toLocaleString("de-DE")} €
-                  </li>
-                  <li className="inline-flex items-center gap-1.5 rounded-full bg-accent-soft px-3 py-1 font-semibold text-ink">
-                    <CalendarDays className="size-4" aria-hidden="true" /> {s.dates[0]?.label}
-                  </li>
-                </ul>
-                <span className="inline-flex items-center gap-1.5 font-bold text-petrol">
-                  Mehr erfahren <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+            <In key={s.slug} i={i + 2}>
+              <TLink href={`/seminare/${s.slug}`} className="group flex h-full flex-col overflow-hidden rounded-[20px] bg-white shadow-card transition-shadow hover:shadow-lift">
+                <span className="relative hidden aspect-[21/9] overflow-hidden sm:block [@media(max-height:760px)]:!hidden">
+                  <Image src={s.cardImage} alt="" fill loading="eager" sizes="(min-width: 768px) 50vw, 100vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                 </span>
-              </div>
-            </Link>
+                <span className="flex flex-1 flex-col gap-3 p-5 md:p-6">
+                  <span className="flex items-start justify-between gap-3">
+                    <span className="font-heading text-xl font-bold text-petrol md:text-2xl">{s.title}</span>
+                    <span className="grid size-10 shrink-0 place-items-center rounded-full bg-accent text-ink transition-transform group-hover:rotate-45" aria-hidden="true">
+                      <ArrowUpRight className="size-5" />
+                    </span>
+                  </span>
+                  <span className="hidden text-ink/75 sm:block">{s.teaser}</span>
+                  <span className="mt-auto flex flex-wrap gap-2 text-sm">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-petrol-50 px-3 py-1 font-semibold text-petrol">
+                      <Clock className="size-4" aria-hidden="true" /> {s.durationDays} Tage
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-petrol-50 px-3 py-1 font-semibold text-petrol">
+                      <Euro className="size-4" aria-hidden="true" /> {s.priceEur.toLocaleString("de-DE")} €
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-accent-soft px-3 py-1 font-semibold text-ink">
+                      <CalendarDays className="size-4" aria-hidden="true" /> {s.dates[0]?.label}
+                    </span>
+                  </span>
+                </span>
+              </TLink>
+            </In>
           ))}
         </div>
-      </section>
-      <CertBar />
-    </>
+      </div>
+    </Screen>
   );
 }

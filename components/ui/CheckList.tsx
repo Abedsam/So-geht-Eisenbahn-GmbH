@@ -11,7 +11,7 @@ export function CheckList({ items, icon = "check", light, className = "" }: Prop
         <li key={item} className="flex items-start gap-3">
           <span
             aria-hidden="true"
-            className={`mt-0.5 grid size-6 shrink-0 place-items-center rounded-full ${icon === "check" ? "bg-accent text-ink" : "text-accent-dark"}`}
+            className={`mt-0.5 grid size-6 shrink-0 place-items-center rounded-full ${icon === "check" ? "bg-accent text-ink" : "text-accent-ink"}`}
           >
             <Icon className="size-4" strokeWidth={3} />
           </span>

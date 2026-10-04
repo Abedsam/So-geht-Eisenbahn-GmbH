@@ -1,8 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Montserrat, Ubuntu } from "next/font/google";
-import { A11yMenu } from "@/components/layout/A11yMenu";
 import { CookieBanner } from "@/components/layout/CookieBanner";
-import { RevealObserver } from "@/components/layout/RevealObserver";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { site } from "@/content/site";
 import { organizationJsonLd } from "@/lib/jsonld";
@@ -21,7 +19,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#406976",
+  themeColor: "#13232A",
   width: "device-width",
   initialScale: 1,
 };
@@ -34,8 +32,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Zum Inhalt springen
         </a>
         {children}
-        <RevealObserver />
-        <A11yMenu />
         <CookieBanner />
         <JsonLd data={organizationJsonLd} />
       </body>

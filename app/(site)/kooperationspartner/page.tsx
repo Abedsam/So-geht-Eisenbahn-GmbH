@@ -1,6 +1,7 @@
-import { CtaBand } from "@/components/sections/CtaBand";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { BadgeCheck, Landmark } from "lucide-react";
+import { In, Screen, Words } from "@/components/stage/Screen";
 import { partners } from "@/content/partners";
+import { certificates } from "@/content/site";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
@@ -9,33 +10,39 @@ export const metadata = pageMetadata({
   path: "/kooperationspartner",
 });
 
-export default function KooperationspartnerPage() {
+export default function Partner() {
   return (
-    <>
-      <section className="section bg-surface">
-        <div className="container-page">
-          <SectionHeading
-            as="h1"
-            align="center"
-            eyebrow="Netzwerk"
-            title="Unsere Kooperationspartner"
-            text="Starke Partner aus der Eisenbahnbranche ermöglichen betriebliche Lernphasen, Praxiseinsätze und den direkten Weg in den Job."
-          />
-          <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {partners.map((p) => (
-              <li key={p.slug} className="reveal flex flex-col gap-4 rounded-card bg-white p-6 shadow-card transition-shadow hover:shadow-lift">
-                {/* Logo-Platzhalter – echtes Logo nur mit Freigabe des Partners einbinden */}
-                <div className="grid h-24 place-items-center rounded-btn border border-dashed border-petrol-100 bg-surface font-heading text-2xl font-bold text-petrol" role="img" aria-label={`Logo-Platzhalter ${p.name}`}>
-                  {p.name}
-                </div>
-                <h2 className="text-xl font-bold">{p.name}</h2>
-                <p className="text-ink/80">{p.text}</p>
-              </li>
-            ))}
-          </ul>
+    <Screen tone="light" width="wide">
+      <div className="flex flex-col gap-[clamp(0.75rem,3vh,2rem)]">
+        <div>
+          <In i={0}>
+            <p className="kicker text-petrol">Netzwerk</p>
+          </In>
+          <Words text="Unsere Kooperationspartner." className="title-xl mt-3 text-petrol" />
         </div>
-      </section>
-      <CtaBand title="Sie möchten Kooperationspartner werden?" text="Wir freuen uns über Eisenbahnverkehrsunternehmen und Dienstleister, die mit uns Fachkräfte für die Schiene gewinnen möchten." cta="Kontakt aufnehmen" href="/kontakt" />
-    </>
+        <ul className="grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-4">
+          {partners.map((p, i) => (
+            <In as="li" key={p.slug} i={i + 2} className="group flex flex-col gap-1 rounded-[16px] bg-white p-3 shadow-card transition-shadow hover:shadow-lift sm:p-4">
+              {/* Logo-Platzhalter – echte Logos nur mit Freigabe der Partner */}
+              <span className="font-heading text-lg font-bold text-petrol" role="img" aria-label={`${p.name} (Logo-Platzhalter)`}>
+                {p.name}
+              </span>
+              <span className="hidden text-sm text-ink/75 sm:block [@media(max-height:760px)]:line-clamp-2">{p.text}</span>
+            </In>
+          ))}
+          <In as="li" i={9} className="flex items-center rounded-[16px] bg-accent p-3 text-sm font-bold text-ink sm:p-4">
+            Sie möchten Partner werden? Sprechen Sie uns an.
+          </In>
+        </ul>
+        <In i={10} className="hidden flex-wrap gap-2 md:flex">
+          {certificates.map((c, i) => (
+            <span key={`${c.title}-${i}`} className="inline-flex items-center gap-2 rounded-full border border-petrol-100 bg-white px-3 py-1.5 text-xs text-ink/80">
+              {i === 0 ? <Landmark className="size-4 text-petrol" aria-hidden="true" /> : <BadgeCheck className="size-4 text-petrol" aria-hidden="true" />}
+              <strong className="text-ink">{c.title}</strong> {c.text}
+            </span>
+          ))}
+        </In>
+      </div>
+    </Screen>
   );
 }

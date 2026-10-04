@@ -1,19 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight, GraduationCap, Rocket, TrainFront } from "lucide-react";
-import { CtaBand } from "@/components/sections/CtaBand";
-import { Hero } from "@/components/sections/Hero";
-import { PartnerBar } from "@/components/sections/PartnerBar";
-import { UspBand } from "@/components/sections/UspBand";
-import { Accordion } from "@/components/ui/Accordion";
-import { LinkButton } from "@/components/ui/Button";
-import { JsonLd } from "@/components/ui/JsonLd";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { VideoPlaceholder } from "@/components/ui/VideoPlaceholder";
-import { homeAdvantages, homeIntroCards } from "@/content/about";
-import { trainingAreas } from "@/content/courses";
-import { homeFaq } from "@/content/faq";
-import { faqJsonLd } from "@/lib/jsonld";
+import { ArrowRight, ArrowUpRight, GraduationCap, MonitorPlay, TrainFront } from "lucide-react";
+import { In, Screen, Words } from "@/components/stage/Screen";
+import { TLink } from "@/components/stage/TLink";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
@@ -23,151 +11,75 @@ export const metadata = pageMetadata({
   path: "/",
 });
 
-const cardIcons = [Rocket, TrainFront, GraduationCap];
+const doors = [
+  { href: "/ausbildungen", code: "A", color: "#7FC8BE", title: "Ausbildungen", text: "Triebfahrzeugführer und Nachschulung Anlage 6/7 inkl. Prüfung", icon: TrainFront },
+  { href: "/weiterbildungen", code: "W", color: "#8DB8D8", title: "Weiterbildungen", text: "Simulator, RFU, Disposition und Eisenbahngrundlagen", icon: MonitorPlay },
+  { href: "/seminare", code: "SE", color: "#E8896A", title: "Seminare", text: "LZB inkl. CIR-ELKE und ETCS Level 2 – je 5 Tage", icon: GraduationCap },
+];
 
-export default function HomePage() {
+export default function Home() {
   return (
-    <>
-      <JsonLd data={faqJsonLd(homeFaq)} />
-
-      <Hero
-        eyebrow="Eisenbahnakademie in Gelsenkirchen"
-        title="Gleiswechsel in Ihre Zukunft"
-        image={{ src: "/images/placeholder-hero-simulator.jpg", alt: "Teilnehmer im Führerstand-Simulator" }}
-        text="Wir sind eine erfahrene und moderne Eisenbahnakademie, die gemeinsam mit ausgewählten Kooperationspartnern die Aus- und Weiterbildungen im Eisenbahnsektor für Unternehmen und Privatteilnehmer organisiert."
-        actions={
-          <>
-            <LinkButton href="/ausbildungen" size="lg">
+    <Screen
+      tone="ink"
+      width="wide"
+      backdrop={
+        <div className="absolute inset-0 -z-10" aria-hidden="true">
+          {/* Bild: Teilnehmer im Führerstand-Simulator (Platzhalter) */}
+          <Image src="/images/placeholder-hero-simulator.jpg" alt="" fill preload sizes="100vw" className="object-cover opacity-60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-petrol-deep via-petrol-deep/85 to-petrol-deep/30" />
+        </div>
+      }
+    >
+      <div className="grid items-end gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
+        <div className="flex flex-col gap-[clamp(0.75rem,2.4vh,1.5rem)]">
+          <In i={0}>
+            <p className="kicker text-white/85">Eisenbahnakademie · Gelsenkirchen</p>
+          </In>
+          <Words text="Gleiswechsel in Ihre Zukunft." className="text-[clamp(2.2rem,min(8vh,8vw),5.4rem)] font-bold leading-[0.98] text-white" />
+          <In i={3} className="hidden sm:block">
+            <p className="lead max-w-xl text-white/85">
+              Wir sind eine erfahrene und moderne Eisenbahnakademie, die gemeinsam mit ausgewählten Kooperationspartnern Aus- und Weiterbildungen im Eisenbahnsektor für Unternehmen und Privatteilnehmer organisiert.
+            </p>
+          </In>
+          <In i={4} className="flex flex-wrap gap-3">
+            <TLink href="/vorteile" className="btn btn-accent">
               Mit uns durchstarten <ArrowRight className="size-4" aria-hidden="true" />
-            </LinkButton>
-            <LinkButton href="/lokfuehrer-werden" variant="outline-light" size="lg">
-              Lokführer werden
-            </LinkButton>
-          </>
-        }
-      />
+            </TLink>
+            <TLink href="/ueber-uns" className="btn btn-ghost-light hidden sm:inline-flex">
+              Willkommen an Bord
+            </TLink>
+          </In>
+        </div>
 
-      {/* Drei Einstiegskarten – leicht in den Hero geschoben */}
-      <section aria-label="Unser Angebot" className="relative z-10 -mt-10 md:-mt-14">
-        <div className="container-page grid gap-4 md:grid-cols-3 md:gap-5">
-          {homeIntroCards.map((c, i) => {
-            const Icon = cardIcons[i];
-            return (
-              <Link
-                key={c.title}
-                href={c.href}
-                className="reveal group flex flex-col gap-3 rounded-card bg-white p-6 shadow-lift ring-1 ring-petrol-100 transition-transform duration-300 hover:-translate-y-1 md:p-7"
+        <div className="flex flex-col gap-3">
+          {doors.map((d, i) => (
+            <In key={d.href} i={i + 3} x>
+              <TLink
+                href={d.href}
+                className="group flex items-center gap-3 rounded-[16px] border border-white/10 bg-white/[0.06] p-2.5 backdrop-blur-md sm:gap-4 transition-colors hover:border-white/40 hover:bg-white/[0.12] sm:p-4"
               >
-                <span className="grid size-12 place-items-center rounded-card bg-accent-soft text-petrol transition-colors group-hover:bg-accent" aria-hidden="true">
-                  <Icon className="size-6" />
+                <span className="grid size-10 shrink-0 place-items-center rounded-[12px] text-ink sm:size-12" style={{ background: d.color }} aria-hidden="true">
+                  <d.icon className="size-6" />
                 </span>
-                <h2 className="text-xl font-bold">{c.title}</h2>
-                <p className="flex-1 text-ink/75">{c.text}</p>
-                <span className="inline-flex items-center gap-1.5 font-bold text-petrol">
-                  {c.cta} <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                <span className="min-w-0 flex-1">
+                  <span className="block font-heading text-lg font-bold text-white">{d.title}</span>
+                  <span className="hidden text-sm text-white/70 sm:block">{d.text}</span>
                 </span>
-              </Link>
-            );
-          })}
+                <ArrowUpRight className="size-5 shrink-0 text-white/60 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" aria-hidden="true" />
+              </TLink>
+            </In>
+          ))}
+          <In i={6}>
+            <TLink href="/lokfuehrer-werden" className="group flex items-center justify-between gap-3 rounded-[18px] bg-accent p-4 font-bold text-ink transition-colors hover:bg-accent-dark">
+              <span>
+                <span className="block text-xs font-semibold uppercase tracking-[0.14em] text-ink/85">Kursstart 02.11.26</span>
+                Lokführer werden – 4.000 € netto/Monat
+              </span>
+              <ArrowRight className="size-5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+            </TLink>
+          </In>
         </div>
-      </section>
-
-      {/* Vorteile */}
-      <section className="section">
-        <div className="container-page grid items-center gap-10 md:grid-cols-2 lg:gap-16">
-          <div className="reveal relative aspect-[4/5] overflow-hidden rounded-card shadow-card">
-            {/* Bild: Dozent erklärt Teilnehmern den Simulator */}
-            <Image src="/images/placeholder-start-vorteile.jpg" alt="Dozent erklärt Teilnehmern den Führerstand-Simulator" fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
-            <div className="absolute right-4 top-4 rounded-card bg-white/95 p-4 shadow-card backdrop-blur">
-              <p className="font-heading text-3xl font-bold text-petrol">10+ Jahre</p>
-              <p className="text-sm text-ink/75">Praxiserfahrung unserer Dozenten</p>
-            </div>
-          </div>
-          <div className="flex flex-col gap-6">
-            <SectionHeading eyebrow="Warum SGE" title="Ihre Vorteile mit SGE" />
-            <Accordion items={homeAdvantages.map((a) => ({ title: a.title, content: <p>{a.text}</p> }))} />
-          </div>
-        </div>
-      </section>
-
-      <UspBand />
-
-      {/* Video-Rundgang */}
-      <section className="section">
-        <div className="container-page grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-          <SectionHeading
-            eyebrow="Rundgang"
-            title="Lernen Sie uns kennen"
-            text={
-              <>
-                <p>Machen Sie einen virtuellen Rundgang durch unsere Räume in Gelsenkirchen: Unterrichtsräume, Führerstand-Simulator und das Team, das Sie auf Ihrem Weg begleitet.</p>
-                <LinkButton href="/infoveranstaltung" variant="outline-dark" className="mt-6">
-                  Persönlich vorbeikommen
-                </LinkButton>
-              </>
-            }
-          />
-          <div className="reveal">
-            <VideoPlaceholder poster="/images/placeholder-video-rundgang.jpg" title="Videorundgang durch die Räume in Gelsenkirchen" duration="1:54" />
-          </div>
-        </div>
-      </section>
-
-      {/* Weiterbildungsbereiche */}
-      <section className="section bg-surface">
-        <div className="container-page">
-          <SectionHeading align="center" eyebrow="Weiterbildungen" title="Die Weiterbildungen umfassen folgende Bereiche" />
-          <div className="mt-12 grid gap-5 md:grid-cols-3">
-            {trainingAreas.map((a) => (
-              <Link key={a.title} href={a.href} className="reveal group flex flex-col overflow-hidden rounded-card bg-white shadow-card transition-shadow hover:shadow-lift">
-                <div className="relative aspect-[3/2] overflow-hidden">
-                  <Image src={a.image} alt="" fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
-                  <span className="absolute left-4 top-4 rounded-full bg-accent px-3 py-1 text-xs font-bold text-ink">{a.audience}</span>
-                </div>
-                <div className="flex flex-1 flex-col gap-2 p-6">
-                  <h3 className="text-xl font-bold">{a.title}</h3>
-                  <p className="flex-1 text-ink/75">{a.text}</p>
-                  <span className="mt-2 inline-flex items-center gap-1.5 font-bold text-petrol">
-                    Mehr erfahren <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <PartnerBar
-        title="Unsere Eisenbahn-Partner"
-        text="Gemeinsam mit einem Netzwerk aus Eisenbahnverkehrsunternehmen und Dienstleistern sorgen wir für eine praxisnahe Ausbildung – und für einen sicheren Arbeitsplatz nach dem Abschluss."
-      />
-
-      {/* FAQ */}
-      <section className="section bg-surface">
-        <div className="container-page grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
-          <SectionHeading
-            eyebrow="FAQ"
-            title="Häufige Fragen zu Förderung und Eignung"
-            text="Sie haben eine andere Frage? Rufen Sie uns an oder schreiben Sie uns – wir beraten Sie gern persönlich."
-          />
-          <Accordion
-            defaultOpen={null}
-            items={homeFaq.map((f) => ({
-              title: f.question,
-              content: <p>{f.answer}</p>,
-              // TODO(Kunde): Antwort freigeben – danach `todo` in content/faq.ts entfernen
-              badge: f.todo ? <span className="rounded-full bg-accent-soft px-2 py-0.5 text-xs font-semibold text-ink/80">Entwurf</span> : undefined,
-            }))}
-          />
-        </div>
-      </section>
-
-      <CtaBand
-        title="Haben wir Ihr Interesse an einer Aus- oder Weiterbildung in der Eisenbahnbranche geweckt?"
-        text="Wir beraten Sie persönlich und unverbindlich – auch zur Förderung über den Bildungsgutschein."
-        cta="Jetzt mit uns durchstarten"
-        href="/kontakt"
-      />
-    </>
+      </div>
+    </Screen>
   );
 }

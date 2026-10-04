@@ -12,7 +12,7 @@ export function Logo({ light = false, className = "" }: { light?: boolean; class
       </svg>
       <span className="flex flex-col leading-none">
         <span className="font-heading text-2xl font-bold tracking-tight">SGE</span>
-        <span className="mt-1 whitespace-nowrap text-[0.55rem] font-semibold uppercase tracking-[0.22em] opacity-90 sm:tracking-[0.28em]">So geht Eisenbahn</span>
+        <span className="mt-1 hidden whitespace-nowrap min-[400px]:block text-[0.55rem] font-semibold uppercase tracking-[0.22em] opacity-90 sm:tracking-[0.28em]">So geht Eisenbahn</span>
       </span>
     </Link>
   );

@@ -17,9 +17,11 @@ const config: Config = {
         accent: {
           DEFAULT: "#FAB33F", // Buttons, Häkchen, Pfeile, Ticker
           dark: "#E89A1C",
+          ink: "#9A5800", // Orange für Text auf hellem Grund (WCAG AA)
           soft: "#FEF0D6",
         },
         surface: "#F7F7F7",
+        frame: "#13232A", // Rahmen um die Stationen (wie ein Führerstand-Display)
         ink: "#1F3640",
       },
       fontFamily: {
