@@ -1,0 +1,100 @@
+@import "tailwindcss";
+@config "../tailwind.config.ts";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    color-scheme: light;
+  }
+  body {
+    @apply bg-white font-sans text-ink antialiased;
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+  h1, h2, h3, h4 {
+    @apply font-heading text-petrol;
+    text-wrap: balance;
+    line-height: 1.15;
+    hyphens: auto;
+    overflow-wrap: break-word;
+  }
+  :focus-visible {
+    outline: 3px solid #fab33f;
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  ::selection {
+    background: #fab33f;
+    color: #1f3640;
+  }
+  [id] {
+    scroll-margin-top: 7rem;
+  }
+}
+
+/* Schwebende Buttons weichen auf Mobilgeräten der Bewerben-Leiste aus */
+@media (max-width: 767px) {
+  html[data-sticky-cta="on"] .fab { bottom: 6rem; }
+}
+
+/* Barrierefreiheits-Menü: Schriftgröße und Zeilenabstand */
+html[data-fontsize="lg"] { font-size: 112.5%; }
+html[data-fontsize="xl"] { font-size: 125%; }
+html[data-spacing="wide"] :where(p, li, dd, label, summary) {
+  line-height: 2 !important;
+  letter-spacing: 0.02em;
+  word-spacing: 0.08em;
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-page px-4 sm:px-6 lg:px-8;
+  }
+  .section {
+    @apply py-16 md:py-24;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 font-sans text-sm font-semibold uppercase tracking-[0.12em] text-petrol;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply h-0.5 w-6 rounded-full bg-accent;
+  }
+  .hero-gradient {
+    background:
+      radial-gradient(90% 60% at 85% 0%, rgba(255, 255, 255, 0.12), transparent 60%),
+      linear-gradient(180deg, #689099 0%, #406976 70%);
+  }
+  .rail-pattern {
+    background-image:
+      repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.06) 0 2px, transparent 2px 56px);
+  }
+  .field {
+    @apply w-full rounded-btn border border-petrol-100 bg-white px-4 py-3 text-base text-ink placeholder:text-ink/55 transition-colors focus:border-petrol focus:outline-none focus:ring-2 focus:ring-accent/60;
+  }
+  .field-error {
+    @apply border-red-600 focus:border-red-600;
+  }
+}
+
+/* Dezente Einblend-Animation (gesteuert von <RevealObserver>). Ohne JS bleibt alles sichtbar. */
+.reveal-ready .reveal {
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-ready .reveal:not(.is-visible) {
+  opacity: 0;
+  transform: translateY(24px);
+}
+@media print {
+  .reveal-ready .reveal { opacity: 1 !important; transform: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
