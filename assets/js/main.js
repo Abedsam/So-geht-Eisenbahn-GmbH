@@ -50,10 +50,10 @@
     });
   }, { rootMargin: '0px 0px -12% 0px', threshold: 0.05 });
   // gestaffelte Verzögerung für Geschwister
-  $$('.features, .reqs, .accordion, .stats__grid').forEach(group => {
+  $$('.features, .reqs, .accordion, .stats__grid, .voices__grid, .people, .tasks, .certs').forEach(group => {
     $$('.reveal', group).forEach((el, i) => el.style.setProperty('--d', `${i * 0.08}s`));
   });
-  $$('.reveal, .cab').forEach(el => io.observe(el));
+  $$('.reveal, .reveal-img').forEach(el => io.observe(el));
 
   /* ---- Zähler ---- */
   const countIO = new IntersectionObserver(entries => {
@@ -61,11 +61,12 @@
       if (!e.isIntersecting) return;
       countIO.unobserve(e.target);
       const el = e.target, to = +el.dataset.count;
-      if (reduced || to === 0) { el.textContent = to; return; }
+      const fmt = n => n.toLocaleString('de-DE');
+      if (reduced || to === 0) { el.textContent = fmt(to); return; }
       const dur = 1600, t0 = performance.now();
       const tick = t => {
         const p = Math.min(1, (t - t0) / dur);
-        el.textContent = Math.round(to * (1 - Math.pow(1 - p, 4)));
+        el.textContent = fmt(Math.round(to * (1 - Math.pow(1 - p, 4))));
         if (p < 1) requestAnimationFrame(tick);
       };
       requestAnimationFrame(tick);
@@ -82,6 +83,7 @@
   const route = $('.route');
   const track = $('.route__track');
   const stations = $$('.station');
+  const photos = $$('.photo');
   const navLinks = $$('.nav__links a');
   const sections = navLinks.map(a => $(a.getAttribute('href')));
   let lastY = window.scrollY, ticking = false;
@@ -116,6 +118,14 @@
     const locoY = r.top + prog * h;
     stations.forEach(s => {
       s.classList.toggle('is-passed', s.getBoundingClientRect().top + 14 <= locoY + 1);
+    });
+
+    // Fotos: leichte Parallaxe
+    if (!reduced) photos.forEach(ph => {
+      const b = ph.getBoundingClientRect();
+      if (b.bottom < 0 || b.top > vh) return;
+      const c = (b.top + b.height / 2 - vh / 2) / vh;
+      ph.style.setProperty('--py', `${(c * -36).toFixed(1)}px`);
     });
 
     // aktiver Navigationspunkt
@@ -158,30 +168,54 @@
     if (d.open) details.forEach(o => { if (o !== d) o.open = false; });
   }));
 
-  /* ---- Formular → vorbereitete E-Mail ---- */
-  const form = $('#apply-form');
-  form.addEventListener('submit', e => {
+  /* ---- Schnellbewerbung (5 Fragen) ---- */
+  const quiz = $('#quiz');
+  const steps = $$('.quiz__step', quiz);
+  const bars = $$('.quiz__bar i', quiz);
+  const count = $('.quiz__count b', quiz);
+  const back = $('.quiz__back', quiz);
+  const hint = $('.quiz__hint', quiz);
+  let current = 0;
+  const show = i => {
+    current = i;
+    steps.forEach((st, k) => st.classList.toggle('is-active', k === i));
+    bars.forEach((b, k) => b.classList.toggle('is-on', k <= i));
+    count.textContent = i + 1;
+    back.hidden = i === 0;
+    hint.textContent = i === steps.length - 1 ? 'Unverbindlich · ohne Unterlagen' : 'Wähle eine Option aus.';
+  };
+  steps.forEach((st, i) => $$('input[type=radio]', st).forEach(r => r.addEventListener('change', () => {
+    setTimeout(() => show(Math.min(i + 1, steps.length - 1)), 280);
+  })));
+  back.addEventListener('click', () => show(Math.max(0, current - 1)));
+  quiz.addEventListener('submit', e => {
     e.preventDefault();
     let ok = true;
-    $$('[required]', form).forEach(f => {
-      const valid = f.value.trim() && (f.type !== 'email' || /^\S+@\S+\.\S+$/.test(f.value));
+    $$('[required]', quiz).forEach(f => {
+      const valid = f.value.trim().length > 1;
       f.classList.toggle('is-invalid', !valid);
       if (!valid) ok = false;
     });
-    const note = $('.form__note', form);
-    if (!ok) { note.textContent = 'Bitte gib deinen Namen und eine gültige E-Mail-Adresse an.'; return; }
-    const d = new FormData(form);
+    const mail = $('#q-email');
+    if (mail.value && !/^\S+@\S+\.\S+$/.test(mail.value)) { mail.classList.add('is-invalid'); ok = false; }
+    if (!ok) { hint.textContent = 'Bitte gib deinen Namen und deine Telefonnummer an.'; return; }
+    const d = new FormData(quiz);
     const body = [
-      `Name: ${d.get('name')}`,
-      `E-Mail: ${d.get('email')}`,
-      `Telefon: ${d.get('phone') || '–'}`,
-      `Interesse: ${d.get('topic')}`,
-      '',
-      d.get('message') || ''
+      'Hallo So geht Eisenbahn-Team,', '', 'ich möchte Lokführer (m/w/d) werden.', '',
+      `Berufliche Situation: ${d.get('situation') || '–'}`,
+      `Mindestens 20 Jahre: ${d.get('alter') || '–'}`,
+      `Abschluss: ${d.get('abschluss') || '–'}`,
+      `Deutschkenntnisse: ${d.get('deutsch') || '–'}`, '',
+      `Name: ${d.get('name')}`, `Telefon: ${d.get('phone')}`, `E-Mail: ${d.get('email') || '–'}`
     ].join('\n');
-    window.location.href = `mailto:hey@so-geht-eisenbahn.de?subject=${encodeURIComponent('Anfrage: Lokführer werden – ' + d.get('topic'))}&body=${encodeURIComponent(body)}`;
-    note.textContent = 'Danke! Dein E-Mail-Programm öffnet sich mit deiner Anfrage.';
+    steps.forEach(st => st.classList.remove('is-active'));
+    $('.quiz__nav', quiz).hidden = true;
+    $('.quiz__count', quiz).hidden = true;
+    bars.forEach(b => b.classList.add('is-on'));
+    $('.quiz__done', quiz).hidden = false;
+    window.location.href = `mailto:hey@so-geht-eisenbahn.de?subject=${encodeURIComponent('Bewerbung: Lokführer (m/w/d) – ' + d.get('name'))}&body=${encodeURIComponent(body)}`;
   });
+  show(0);
 
   const yr = $('#year');
   if (yr) yr.textContent = new Date().getFullYear();
