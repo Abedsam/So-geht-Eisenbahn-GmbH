@@ -4,7 +4,7 @@ import { site } from "@/content/site";
 type PageMeta = { title: string; description: string; path: string; image?: string; noIndex?: boolean };
 
 /** Einheitliche Metadaten inkl. Open Graph für jede Seite */
-export function pageMetadata({ title, description, path, image = "/images/placeholder-og-default.jpg", noIndex }: PageMeta): Metadata {
+export function pageMetadata({ title, description, path, image = "/assets/hero-zug.png", noIndex }: PageMeta): Metadata {
   return {
     title,
     description,
