@@ -5,12 +5,14 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { BookOpen, ChevronDown, GraduationCap, Handshake, Mail, MessageCircle, Phone, Presentation, TrainFront, Users, type LucideIcon } from "lucide-react";
 import { Dock, DockItem, DockSeparator, DockTooltip } from "@/components/ui/mac-os-dock";
-import { navigation, site, ticker } from "@/content/site";
+import { navigation, site, ticker, type NavItem } from "@/content/site";
 import { Logo } from "./Logo";
 
 // Laufband: 3× die Einträge, dann verdoppelt für eine nahtlose Schleife
 const tickerSet = [...ticker, ...ticker, ...ticker];
 const tickerLoop = [...tickerSet, ...tickerSet];
+
+const CTA_HREF = "/lokfuehrer-werden";
 
 const navIcons: Record<string, LucideIcon> = {
   "/ausbildungen": GraduationCap,
@@ -129,6 +131,66 @@ export function Header() {
     };
   }, [menu]);
 
+  const renderNavItem = (it: NavItem) => {
+    const active = isActive(pathname, it.href);
+    const expanded = open === it.label && !!it.children;
+    const Icon = navIcons[it.href] ?? TrainFront;
+    // „Lokführer werden“ ist im Dock zugleich der Haupt-Button (blau)
+    const cta = it.href === CTA_HREF;
+    return (
+      <li
+        key={it.href}
+        className="relative"
+        onMouseEnter={() => setOpen(it.label)}
+        onMouseLeave={() => setOpen(null)}
+        onBlur={(e) => {
+          if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setOpen(null);
+        }}
+      >
+        <DockItem>
+          <Link
+            href={it.href}
+            aria-current={active ? "page" : undefined}
+            aria-haspopup={it.children ? "true" : undefined}
+            aria-expanded={it.children ? expanded : undefined}
+            onFocus={() => setOpen(it.label)}
+            className={`relative flex min-w-[64px] flex-col items-center gap-1 rounded-xl px-2.5 pb-2 pt-1.5 min-[1340px]:px-3 min-[1400px]:px-3.5 min-[1600px]:px-4 text-[12px] font-semibold leading-none no-underline transition-colors hover:text-white ${
+              cta ? "bg-blue text-white hover:bg-blue-hover" : active ? "bg-white/10 text-white hover:bg-white/10" : "text-white/[.76] hover:bg-white/10"
+            }`}
+          >
+            <Icon aria-hidden="true" className="size-5" strokeWidth={1.8} />
+            <span className="flex items-center gap-1 whitespace-nowrap">
+              {it.label}
+              {it.children && <ChevronDown aria-hidden="true" className="size-3 opacity-70" />}
+            </span>
+            {/* Punkt unter dem aktiven Eintrag – wie bei geöffneten Apps im macOS-Dock */}
+            <span
+              aria-hidden="true"
+              className={`absolute bottom-0.5 left-1/2 size-1 -translate-x-1/2 rounded-full ${active ? (cta ? "bg-white" : "bg-blue-light shadow-[0_0_6px_#8FC3F5]") : "bg-transparent"}`}
+            />
+          </Link>
+        </DockItem>
+        {it.children && (
+          <div className={`absolute left-1/2 top-full z-10 -translate-x-1/2 pt-3 ${expanded ? "block" : "hidden"}`}>
+            <ul className="m-0 flex min-w-[280px] list-none flex-col rounded-xl bg-white p-2 shadow-menu">
+              {it.children.map((c) => (
+                <li key={c.href}>
+                  <Link
+                    href={c.href}
+                    className="flex flex-col gap-0.5 rounded-btn px-3.5 py-3 text-navy no-underline hover:bg-bg hover:text-blue"
+                  >
+                    <span className="text-[15px] font-bold">{c.label}</span>
+                    <span className="text-[13px] text-muted">{c.desc}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </li>
+    );
+  };
+
   return (
     <header className="fixed inset-x-0 top-0 z-[100] border-b border-white/[.08] bg-navy/90 backdrop-blur-[14px]">
       <Ticker />
@@ -136,65 +198,7 @@ export function Header() {
         <Logo onClick={() => setMenu(false)} />
 
         <Dock className="hidden min-[1240px]:flex">
-          {navigation.map((it) => {
-            const active = isActive(pathname, it.href);
-            const expanded = open === it.label && !!it.children;
-            const Icon = navIcons[it.href] ?? TrainFront;
-            // „Lokführer werden“ ist im Dock zugleich der Haupt-Button (blau)
-            const cta = it.href === "/lokfuehrer-werden";
-            return (
-              <li
-                key={it.href}
-                className="relative"
-                onMouseEnter={() => setOpen(it.label)}
-                onMouseLeave={() => setOpen(null)}
-                onBlur={(e) => {
-                  if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setOpen(null);
-                }}
-              >
-                <DockItem>
-                  <Link
-                    href={it.href}
-                    aria-current={active ? "page" : undefined}
-                    aria-haspopup={it.children ? "true" : undefined}
-                    aria-expanded={it.children ? expanded : undefined}
-                    onFocus={() => setOpen(it.label)}
-                    className={`relative flex min-w-[64px] flex-col items-center gap-1 rounded-xl px-2.5 pb-2 pt-1.5 min-[1340px]:px-3 min-[1400px]:px-3.5 min-[1600px]:px-4 text-[12px] font-semibold leading-none no-underline transition-colors hover:text-white ${
-                      cta ? "bg-blue text-white hover:bg-blue-hover" : active ? "bg-white/10 text-white hover:bg-white/10" : "text-white/[.76] hover:bg-white/10"
-                    }`}
-                  >
-                    <Icon aria-hidden="true" className="size-5" strokeWidth={1.8} />
-                    <span className="flex items-center gap-1 whitespace-nowrap">
-                      {it.label}
-                      {it.children && <ChevronDown aria-hidden="true" className="size-3 opacity-70" />}
-                    </span>
-                    {/* Punkt unter dem aktiven Eintrag – wie bei geöffneten Apps im macOS-Dock */}
-                    <span
-                      aria-hidden="true"
-                      className={`absolute bottom-0.5 left-1/2 size-1 -translate-x-1/2 rounded-full ${active ? (cta ? "bg-white" : "bg-blue-light shadow-[0_0_6px_#8FC3F5]") : "bg-transparent"}`}
-                    />
-                  </Link>
-                </DockItem>
-                {it.children && (
-                  <div className={`absolute left-1/2 top-full z-10 -translate-x-1/2 pt-3 ${expanded ? "block" : "hidden"}`}>
-                    <ul className="m-0 flex min-w-[280px] list-none flex-col rounded-xl bg-white p-2 shadow-menu">
-                      {it.children.map((c) => (
-                        <li key={c.href}>
-                          <Link
-                            href={c.href}
-                            className="flex flex-col gap-0.5 rounded-btn px-3.5 py-3 text-navy no-underline hover:bg-bg hover:text-blue"
-                          >
-                            <span className="text-[15px] font-bold">{c.label}</span>
-                            <span className="text-[13px] text-muted">{c.desc}</span>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </li>
-            );
-          })}
+          {navigation.filter((it) => it.href !== CTA_HREF).map(renderNavItem)}
           <DockSeparator />
           {[
             { href: site.phoneHref, label: site.phone, Icon: Phone },
@@ -214,6 +218,8 @@ export function Header() {
               </DockItem>
             </li>
           ))}
+          {/* „Lokführer werden“ ganz hinten als blauer Haupt-Button */}
+          {navigation.filter((it) => it.href === CTA_HREF).map(renderNavItem)}
         </Dock>
 
         <div className="flex items-center gap-3">

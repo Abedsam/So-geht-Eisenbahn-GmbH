@@ -43,7 +43,6 @@ export const navigation: NavItem[] = [
       { label: "Nachschulung Anlage 6/7", desc: "Kompakt zur fehlenden Qualifikation", href: "/ausbildungen#nachschulung" },
     ],
   },
-  { label: "Lokführer werden", href: "/lokfuehrer-werden" },
   {
     label: "Weiterbildungen",
     href: "/weiterbildungen",
@@ -65,6 +64,7 @@ export const navigation: NavItem[] = [
   { label: "Über uns", href: "/ueber-uns" },
   { label: "Kooperationspartner", href: "/kooperationspartner" },
   { label: "Kontakt", href: "/kontakt" },
+  { label: "Lokführer werden", href: "/lokfuehrer-werden" },
 ];
 
 export const footerNav = [
