@@ -39,7 +39,6 @@ export default function HomePage() {
   return (
     <main id="inhalt">
       <HomeHero />
-      <Journey />
 
       {/* 03 Warum SGE */}
       <section className="section-y">
@@ -67,8 +66,10 @@ export default function HomePage() {
         </div>
       </section>
 
+      <Journey />
+
       {/* 04 Ausbildung */}
-      <section className="pb-[clamp(80px,10vw,140px)]">
+      <section className="section-y">
         <div className="container-page grid grid-cols-[repeat(auto-fit,minmax(min(100%,480px),1fr))] items-center gap-[clamp(32px,5vw,72px)]">
           <div data-reveal="" className="group relative aspect-[4/3] overflow-hidden rounded-2xl">
             <Image
