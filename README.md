@@ -18,6 +18,13 @@ npm run typecheck    # TypeScript
 
 Voraussetzung: Node.js ≥ 20.9. Statischer Export: `npm run build:static` (→ `/out`, ohne `/api`-Routen).
 
+## Vorschau (GitHub Pages)
+
+Jeder Push auf `main` oder `claude/sleepy-davinci-smzr3n` baut die Seite statisch und veröffentlicht sie unter
+**https://abedsam.github.io/So-geht-Eisenbahn-GmbH/** (`.github/workflows/pages.yml`).
+Einmalig aktivieren: Repo → *Settings* → *Pages* → *Source*: **GitHub Actions**.
+Hinweis: GitHub Pages für **private** Repos gibt es nur mit GitHub Pro/Team.
+
 ## Stand
 
 | Bereich | Status |

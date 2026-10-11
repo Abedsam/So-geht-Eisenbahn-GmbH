@@ -18,7 +18,6 @@ export const metadata: Metadata = {
   description: site.description,
   applicationName: site.name,
   formatDetection: { telephone: false },
-  icons: { icon: "/icon.svg" },
 };
 
 export const viewport: Viewport = {

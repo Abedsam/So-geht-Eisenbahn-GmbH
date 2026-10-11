@@ -5,6 +5,7 @@ import { HomeHero } from "@/components/home/HomeHero";
 import { Journey } from "@/components/home/Journey";
 import { fundingSteps, partnerNames, reasons, seminarTeasers, trainingFacts, trainings } from "@/content/home";
 import { funders } from "@/content/site";
+import { asset } from "@/lib/asset";
 
 export const metadata: Metadata = {
   title: { absolute: "So geht Eisenbahn – Ausbildung & Weiterbildung im Bahnbereich | Gelsenkirchen" },
@@ -71,7 +72,7 @@ export default function HomePage() {
         <div className="container-page grid grid-cols-[repeat(auto-fit,minmax(min(100%,480px),1fr))] items-center gap-[clamp(32px,5vw,72px)]">
           <div data-reveal="" className="group relative aspect-[4/3] overflow-hidden rounded-2xl">
             <Image
-              src="/assets/naechster-halt.png"
+              src={asset("/assets/naechster-halt.png")}
               alt="Zug am Gleis 1 mit Anzeigetafel: Nächster Halt – Deine Ausbildung"
               fill
               sizes="(min-width: 1040px) 640px, 100vw"
@@ -242,7 +243,7 @@ export default function HomePage() {
 
       {/* 09 Final CTA */}
       <section className="relative overflow-hidden bg-navy text-white">
-        <Image src="/assets/zug-bahnsteig.png" alt="" fill sizes="100vw" className="object-cover opacity-35" />
+        <Image src={asset("/assets/zug-bahnsteig.png")} alt="" fill sizes="100vw" className="object-cover opacity-35" />
         <div aria-hidden="true" className="absolute inset-0" style={{ background: "radial-gradient(ellipse at center, rgba(7,28,53,.55) 0%, rgba(7,28,53,.95) 70%)" }} />
         <div className="relative mx-auto flex max-w-[1000px] flex-col items-center gap-7 px-[clamp(20px,3vw,40px)] py-[clamp(100px,12vw,180px)] text-center">
           <span data-reveal="" className="font-mono text-[13px] tracking-[.16em] text-blue-light">

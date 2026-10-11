@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { asset } from "@/lib/asset";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { nextCourseStart } from "@/content/site";
@@ -69,7 +70,7 @@ export function HomeHero() {
       <div className="sticky top-0 h-svh overflow-hidden">
         <Image
           ref={img}
-          src="/assets/hero-zug.png"
+          src={asset("/assets/hero-zug.png")}
           alt="Moderner blau-weißer Zug von So geht Eisenbahn fährt im Abendlicht an einem Bahnsteig ein"
           fill
           sizes="100vw"

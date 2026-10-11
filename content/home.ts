@@ -1,3 +1,5 @@
+import { asset } from "@/lib/asset";
+
 // Inhalte der Startseite
 
 export type Station = {
@@ -26,7 +28,7 @@ export const stations: Station[] = [
     text: "Der Zug fährt ein. In ca. 12 Monaten wirst du bei uns in Gelsenkirchen zum Triebfahrzeugführer – auch als Quereinsteiger.",
     cta: "Ausbildung entdecken",
     href: "/ausbildungen",
-    img: "/assets/naechster-halt.png",
+    img: asset("/assets/naechster-halt.png"),
     alt: "Zug fährt an Gleis 1 ein, Anzeige: Nächster Halt Deine Ausbildung",
   },
   {
@@ -39,7 +41,7 @@ export const stations: Station[] = [
     sequence: true,
     cta: "Lokführer werden",
     href: "/lokfuehrer-werden",
-    img: "/assets/zug-kurve.png",
+    img: asset("/assets/zug-kurve.png"),
     alt: "Zug in einer Kurve im Sonnenuntergang",
   },
   {
@@ -50,7 +52,7 @@ export const stations: Station[] = [
     text: "Schon im Beruf? Halte dein Wissen aktuell – mit Fortbildungsunterricht, Disposition und Eisenbahngrundlagen.",
     cta: "Weiterbildungen entdecken",
     href: "/weiterbildungen",
-    img: "/assets/zug-fahrt.png",
+    img: asset("/assets/zug-fahrt.png"),
     alt: "Moderner Zug in voller Fahrt",
   },
   {
@@ -62,7 +64,7 @@ export const stations: Station[] = [
     chips: ["Simulator-Training", "PZB", "LZB", "ETCS"],
     cta: "Seminare ansehen",
     href: "/seminare",
-    img: "/assets/zug-drehgestell.png",
+    img: asset("/assets/zug-drehgestell.png"),
     alt: "Technikdetail: Drehgestell eines Triebzugs",
   },
   {
@@ -74,7 +76,7 @@ export const stations: Station[] = [
     chips: ["FlixTrain", "Rail Force", "ME-Rail", "SGL"],
     cta: "Partner kennenlernen",
     href: "/kooperationspartner",
-    img: "/assets/zug-seite.png",
+    img: asset("/assets/zug-seite.png"),
     alt: "Seitenansicht eines Zuges mit spiegelnden Fenstern",
   },
   {
@@ -85,7 +87,7 @@ export const stations: Station[] = [
     text: "Hier beginnt deine Zukunft im Führerstand – sicher, gefragt und gut bezahlt.",
     cta: "Jetzt Lokführer werden",
     href: "/lokfuehrer-werden",
-    img: "/assets/zug-bahnsteig.png",
+    img: asset("/assets/zug-bahnsteig.png"),
     alt: "Zug steht im modernen Bahnhof bereit zur Abfahrt",
     big: true,
   },
@@ -115,15 +117,15 @@ export const fundingSteps = [
 ];
 
 export const trainings = [
-  { title: "Simulator-Training", text: "Zusi-Simulator, PZB, LZB und ETCS Level 2 – realitätsnah trainieren.", href: "/weiterbildungen#simulator", img: "/assets/zug-detail.png", alt: "Scheinwerfer eines modernen Triebzugs" },
-  { title: "Fortbildungsunterricht", text: "Regelmäßiger RFU für Triebfahrzeugführer nach Vorgaben deines EVU.", href: "/weiterbildungen#rfu", img: "/assets/zug-innen.png", alt: "Innenraum eines modernen Regionalzugs" },
-  { title: "Disposition", text: "Betriebssteuerung, Leitstelle und Personaleinsatz im Bahnbetrieb.", href: "/weiterbildungen#disposition", img: "/assets/zug-kurve.png", alt: "Zug in einer Gleiskurve" },
-  { title: "Eisenbahngrundlagen", text: "Der kompakte Einstieg in Technik, Betrieb und Regelwerk.", href: "/weiterbildungen#grundlagen", img: "/assets/zug-seite.png", alt: "Seitenansicht eines Zuges" },
+  { title: "Simulator-Training", text: "Zusi-Simulator, PZB, LZB und ETCS Level 2 – realitätsnah trainieren.", href: "/weiterbildungen#simulator", img: asset("/assets/zug-detail.png"), alt: "Scheinwerfer eines modernen Triebzugs" },
+  { title: "Fortbildungsunterricht", text: "Regelmäßiger RFU für Triebfahrzeugführer nach Vorgaben deines EVU.", href: "/weiterbildungen#rfu", img: asset("/assets/zug-innen.png"), alt: "Innenraum eines modernen Regionalzugs" },
+  { title: "Disposition", text: "Betriebssteuerung, Leitstelle und Personaleinsatz im Bahnbetrieb.", href: "/weiterbildungen#disposition", img: asset("/assets/zug-kurve.png"), alt: "Zug in einer Gleiskurve" },
+  { title: "Eisenbahngrundlagen", text: "Der kompakte Einstieg in Technik, Betrieb und Regelwerk.", href: "/weiterbildungen#grundlagen", img: asset("/assets/zug-seite.png"), alt: "Seitenansicht eines Zuges" },
 ];
 
 export const seminarTeasers = [
-  { name: "LZB", text: "Linienförmige Zugbeeinflussung · inkl. CIR-ELKE", href: "/seminare/lzb", img: "/assets/zug-fahrt.png", alt: "Zug in voller Fahrt auf der Schnellfahrstrecke", position: "35% 50%" },
-  { name: "ETCS", text: "European Train Control System · Level 2", href: "/seminare/etcs", img: "/assets/zug-drehgestell.png", alt: "Detailansicht Drehgestell und Fahrwerk eines modernen Triebzugs", position: "50% 50%" },
+  { name: "LZB", text: "Linienförmige Zugbeeinflussung · inkl. CIR-ELKE", href: "/seminare/lzb", img: asset("/assets/zug-fahrt.png"), alt: "Zug in voller Fahrt auf der Schnellfahrstrecke", position: "35% 50%" },
+  { name: "ETCS", text: "European Train Control System · Level 2", href: "/seminare/etcs", img: asset("/assets/zug-drehgestell.png"), alt: "Detailansicht Drehgestell und Fahrwerk eines modernen Triebzugs", position: "50% 50%" },
 ];
 
 // TODO(Kunde): echte Partnerlogos liefern – bis dahin Namen als Platzhalter-Kacheln
