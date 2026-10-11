@@ -27,14 +27,12 @@ Hinweis: GitHub Pages für **private** Repos gibt es nur mit GitHub Pro/Team.
 
 ## Stand
 
-| Bereich | Status |
-|---|---|
-| Header (Laufband, Dropdowns, Mobile-Menü < 1240 px) | ✅ `components/site/Header.tsx` |
-| Footer inkl. „Cookie-Einstellungen“ | ✅ `components/site/Footer.tsx` |
-| Cookie-Banner (`localStorage["sge-cookie-consent"]` = `all` \| `necessary`) | ✅ `components/site/CookieBanner.tsx` |
-| Startseite `/` (Scroll-Hero, Zugreise, alle Sektionen) | ✅ `app/page.tsx`, `components/home/*`, Texte in `content/home.ts` |
-| Scroll-Reveal / Zähler (`data-reveal`, `data-reveal-delay`, `data-count`) | ✅ `components/site/RevealObserver.tsx` |
-| Ausbildungen, Lokführer werden, Weiterbildungen, Seminare (+ LZB/ETCS), Über uns, Kooperationspartner, Kontakt, Bewerben (Quiz), Danke, Impressum, Datenschutz | ⏳ Platzhalter (`noindex`), folgen nach Vorlage |
+Alle 13 Seiten aus dem Handoff sind umgesetzt (`app/(site)/*`, Danke-Seite ohne Header/Footer unter `app/danke`).
+Texte liegen in `content/*.ts`, seitenspezifische Komponenten in `components/<bereich>/`.
+
+**Umgebungsvariablen**
+- `NEXT_PUBLIC_LEAD_WEBHOOK_URL` – Ziel für Bewerbungen aus dem Quiz (`/bewerben`). Leer = Demo-Modus (Erfolg wird simuliert).
+- `NEXT_PUBLIC_BASE_PATH` – Unterpfad für GitHub Pages (setzt der Workflow automatisch).
 
 ## Design-Tokens
 
@@ -52,7 +50,7 @@ In `tailwind.config.ts`: `navy` #071C35, `blue` #005BAA (`blue-hover` #1689E8, `
 
 - [ ] Logo als SVG beim Kunden anfordern (PNG nur 73×31 px) → `components/site/Logo.tsx`
 - [ ] Echte Partnerlogos (zurzeit Namen als Kacheln) → `content/home.ts`
-- [ ] Webhook/CRM-Endpoint für Leads und Kontakt
+- [ ] Webhook/CRM-Endpoint für Leads (`NEXT_PUBLIC_LEAD_WEBHOOK_URL`) und Kontaktformular (`// TODO: POST /api/kontakt`)
 - [ ] Impressum und Datenschutzerklärung rechtlich prüfen
 - [ ] Kursdaten LZB/ETCS bestätigen
 - [ ] Für Produktion ein geprüftes CMP (z. B. Usercentrics, Cookiebot) einsetzen; Pixel erst nach Consent laden
