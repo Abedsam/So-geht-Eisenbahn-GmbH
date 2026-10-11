@@ -1,9 +1,23 @@
 import type { Metadata } from "next";
-import { PagePlaceholder } from "@/components/site/PagePlaceholder";
+import { SeminarDetail } from "@/components/weiterbildung/SeminarDetail";
+import { lzb } from "@/content/weiterbildung";
 
-// TODO: nach Design-Vorlage umsetzen
-export const metadata: Metadata = { title: "LZB & CIR-ELKE", robots: { index: false, follow: true } };
+export const metadata: Metadata = {
+  title: "LZB & CIR-ELKE Seminar",
+  description:
+    "LZB-Seminar inkl. CIR-ELKE: Bedienung, Betriebsverfahren, Störungen, Unregelmäßigkeiten und Simulatortraining für Triebfahrzeugführer in Gelsenkirchen.",
+  alternates: { canonical: "/seminare/lzb" },
+  openGraph: {
+    type: "website",
+    locale: "de_DE",
+    url: "/seminare/lzb",
+    siteName: "So geht Eisenbahn",
+    title: "LZB & CIR-ELKE Seminar | So geht Eisenbahn",
+    description: "Linienförmige Zugbeeinflussung kompakt – mit Simulatorfahrten.",
+    images: [{ url: "/assets/zug-fahrt.png" }],
+  },
+};
 
-export default function Page() {
-  return <PagePlaceholder kicker="SEMINAR" title="LZB & CIR-ELKE" />;
+export default function SeminarLzbPage() {
+  return <SeminarDetail data={lzb} />;
 }

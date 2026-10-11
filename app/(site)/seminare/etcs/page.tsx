@@ -1,9 +1,23 @@
 import type { Metadata } from "next";
-import { PagePlaceholder } from "@/components/site/PagePlaceholder";
+import { SeminarDetail } from "@/components/weiterbildung/SeminarDetail";
+import { etcs } from "@/content/weiterbildung";
 
-// TODO: nach Design-Vorlage umsetzen
-export const metadata: Metadata = { title: "ETCS Level 2", robots: { index: false, follow: true } };
+export const metadata: Metadata = {
+  title: "ETCS Level 2 Seminar",
+  description:
+    "ETCS Level 2 Seminar: Fahrzeugausrüstung, DMI, Regelbetrieb, Zugüberwachung, Systemeingriffe, Störungen und Simulatortraining in Gelsenkirchen.",
+  alternates: { canonical: "/seminare/etcs" },
+  openGraph: {
+    type: "website",
+    locale: "de_DE",
+    url: "/seminare/etcs",
+    siteName: "So geht Eisenbahn",
+    title: "ETCS Level 2 Seminar | So geht Eisenbahn",
+    description: "European Train Control System kompakt – mit Simulatorfahrten.",
+    images: [{ url: "/assets/zug-drehgestell.png" }],
+  },
+};
 
-export default function Page() {
-  return <PagePlaceholder kicker="SEMINAR" title="ETCS Level 2" />;
+export default function SeminarEtcsPage() {
+  return <SeminarDetail data={etcs} />;
 }
