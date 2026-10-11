@@ -11,6 +11,8 @@ const tickerSet = [...ticker, ...ticker, ...ticker];
 const tickerLoop = [...tickerSet, ...tickerSet];
 
 function isActive(pathname: string, href: string) {
+  // Die Bewerbungs-Landingpage gehört zu „Lokführer werden“
+  if (href === "/lokfuehrer-werden" && pathname.startsWith("/bewerben")) return true;
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 

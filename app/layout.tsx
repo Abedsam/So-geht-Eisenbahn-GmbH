@@ -1,8 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Archivo, JetBrains_Mono } from "next/font/google";
 import { CookieBanner } from "@/components/site/CookieBanner";
-import { Footer } from "@/components/site/Footer";
-import { Header } from "@/components/site/Header";
 import { RevealObserver } from "@/components/site/RevealObserver";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { site } from "@/content/site";
@@ -40,9 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Zum Inhalt springen
         </a>
-        <Header />
         {children}
-        <Footer />
         <CookieBanner />
         <RevealObserver />
         <JsonLd data={organizationJsonLd} />
