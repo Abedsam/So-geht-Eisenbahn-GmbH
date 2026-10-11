@@ -3,12 +3,24 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { BookOpen, ChevronDown, GraduationCap, Handshake, Mail, MessageCircle, Phone, Presentation, TrainFront, Users, type LucideIcon } from "lucide-react";
+import { Dock, DockItem, DockSeparator, DockTooltip } from "@/components/ui/mac-os-dock";
 import { navigation, site, ticker } from "@/content/site";
 import { Logo } from "./Logo";
 
 // Laufband: 3× die Einträge, dann verdoppelt für eine nahtlose Schleife
 const tickerSet = [...ticker, ...ticker, ...ticker];
 const tickerLoop = [...tickerSet, ...tickerSet];
+
+const navIcons: Record<string, LucideIcon> = {
+  "/ausbildungen": GraduationCap,
+  "/lokfuehrer-werden": TrainFront,
+  "/weiterbildungen": BookOpen,
+  "/seminare": Presentation,
+  "/ueber-uns": Users,
+  "/kooperationspartner": Handshake,
+  "/kontakt": MessageCircle,
+};
 
 function isActive(pathname: string, href: string) {
   // Die Bewerbungs-Landingpage gehört zu „Lokführer werden“
@@ -123,10 +135,13 @@ export function Header() {
       <nav aria-label="Hauptnavigation" className="mx-auto flex h-[76px] max-w-page items-center justify-between gap-6 px-[clamp(16px,3vw,40px)]">
         <Logo onClick={() => setMenu(false)} />
 
-        <ul className="m-0 hidden list-none items-center gap-[clamp(14px,1.7vw,28px)] p-0 min-[1240px]:flex">
+        <Dock className="hidden min-[1240px]:flex">
           {navigation.map((it) => {
             const active = isActive(pathname, it.href);
             const expanded = open === it.label && !!it.children;
+            const Icon = navIcons[it.href] ?? TrainFront;
+            // „Lokführer werden“ ist im Dock zugleich der Haupt-Button (blau)
+            const cta = it.href === "/lokfuehrer-werden";
             return (
               <li
                 key={it.href}
@@ -137,24 +152,31 @@ export function Header() {
                   if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setOpen(null);
                 }}
               >
-                <Link
-                  href={it.href}
-                  aria-current={active ? "page" : undefined}
-                  aria-haspopup={it.children ? "true" : undefined}
-                  aria-expanded={it.children ? expanded : undefined}
-                  onFocus={() => setOpen(it.label)}
-                  className={`relative flex h-[76px] items-center gap-[7px] whitespace-nowrap text-[15px] font-semibold no-underline hover:text-white ${
-                    active ? "text-white" : "text-white/[.76]"
-                  }`}
-                >
-                  {it.label}
-                  {it.children && (
-                    <span aria-hidden="true" className="size-1.5 translate-y-[-3px] rotate-45 border-b-[1.5px] border-r-[1.5px] border-current" />
-                  )}
-                  <span aria-hidden="true" className={`absolute inset-x-0 bottom-0 h-[3px] rounded-t-sm ${active ? "bg-blue-hover" : "bg-transparent"}`} />
-                </Link>
+                <DockItem>
+                  <Link
+                    href={it.href}
+                    aria-current={active ? "page" : undefined}
+                    aria-haspopup={it.children ? "true" : undefined}
+                    aria-expanded={it.children ? expanded : undefined}
+                    onFocus={() => setOpen(it.label)}
+                    className={`relative flex min-w-[64px] flex-col items-center gap-1 rounded-xl px-2.5 pb-2 pt-1.5 text-[12px] font-semibold leading-none no-underline transition-colors hover:text-white ${
+                      cta ? "bg-blue text-white hover:bg-blue-hover" : active ? "bg-white/10 text-white hover:bg-white/10" : "text-white/[.76] hover:bg-white/10"
+                    }`}
+                  >
+                    <Icon aria-hidden="true" className="size-5" strokeWidth={1.8} />
+                    <span className="flex items-center gap-1 whitespace-nowrap">
+                      {it.label}
+                      {it.children && <ChevronDown aria-hidden="true" className="size-3 opacity-70" />}
+                    </span>
+                    {/* Punkt unter dem aktiven Eintrag – wie bei geöffneten Apps im macOS-Dock */}
+                    <span
+                      aria-hidden="true"
+                      className={`absolute bottom-0.5 left-1/2 size-1 -translate-x-1/2 rounded-full ${active ? (cta ? "bg-white" : "bg-blue-light shadow-[0_0_6px_#8FC3F5]") : "bg-transparent"}`}
+                    />
+                  </Link>
+                </DockItem>
                 {it.children && (
-                  <div className={`absolute left-[-16px] top-full pt-1.5 ${expanded ? "block" : "hidden"}`}>
+                  <div className={`absolute left-1/2 top-full z-10 -translate-x-1/2 pt-3 ${expanded ? "block" : "hidden"}`}>
                     <ul className="m-0 flex min-w-[280px] list-none flex-col rounded-xl bg-white p-2 shadow-menu">
                       {it.children.map((c) => (
                         <li key={c.href}>
@@ -173,12 +195,31 @@ export function Header() {
               </li>
             );
           })}
-        </ul>
+          <DockSeparator />
+          {[
+            { href: site.phoneHref, label: site.phone, Icon: Phone },
+            { href: `mailto:${site.email}`, label: site.email, Icon: Mail },
+          ].map(({ href, label, Icon }) => (
+            <li key={href}>
+              <DockItem lift={1.2}>
+                <DockTooltip content={label}>
+                  <a
+                    href={href}
+                    aria-label={label}
+                    className="flex size-11 items-center justify-center rounded-full text-white/[.76] transition-colors hover:bg-white/10 hover:text-white"
+                  >
+                    <Icon aria-hidden="true" className="size-[18px]" strokeWidth={1.8} />
+                  </a>
+                </DockTooltip>
+              </DockItem>
+            </li>
+          ))}
+        </Dock>
 
         <div className="flex items-center gap-3">
           <Link
             href="/lokfuehrer-werden"
-            className="hidden items-center gap-2.5 whitespace-nowrap rounded-btn bg-blue px-5 py-3 text-[15px] font-bold text-white no-underline hover:bg-blue-hover hover:text-white min-[520px]:flex"
+            className="hidden items-center gap-2.5 whitespace-nowrap rounded-btn bg-blue px-5 py-3 text-[15px] font-bold text-white no-underline hover:bg-blue-hover hover:text-white min-[520px]:flex min-[1240px]:hidden"
           >
             Lokführer werden <span aria-hidden="true">→</span>
           </Link>
