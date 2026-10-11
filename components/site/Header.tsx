@@ -159,7 +159,7 @@ export function Header() {
                     aria-haspopup={it.children ? "true" : undefined}
                     aria-expanded={it.children ? expanded : undefined}
                     onFocus={() => setOpen(it.label)}
-                    className={`relative flex min-w-[64px] flex-col items-center gap-1 rounded-xl px-2.5 pb-2 pt-1.5 text-[12px] font-semibold leading-none no-underline transition-colors hover:text-white ${
+                    className={`relative flex min-w-[64px] flex-col items-center gap-1 rounded-xl px-2.5 pb-2 pt-1.5 min-[1340px]:px-3 min-[1400px]:px-3.5 min-[1600px]:px-4 text-[12px] font-semibold leading-none no-underline transition-colors hover:text-white ${
                       cta ? "bg-blue text-white hover:bg-blue-hover" : active ? "bg-white/10 text-white hover:bg-white/10" : "text-white/[.76] hover:bg-white/10"
                     }`}
                   >

@@ -23,7 +23,7 @@ export function Dock({ children, className, ...props }: React.ComponentPropsWith
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className={cn(
-          "m-0 flex list-none items-center gap-1 rounded-2xl border border-white/10 bg-white/[.06] px-2 py-1.5 shadow-lg shadow-black/20 backdrop-blur-lg",
+          "m-0 flex list-none items-center gap-1.5 rounded-2xl border border-white/10 bg-white/[.06] px-2 py-1.5 shadow-lg shadow-black/20 backdrop-blur-lg min-[1340px]:gap-2.5 min-[1400px]:gap-3 min-[1400px]:px-3 min-[1600px]:gap-4",
           className,
         )}
         {...(props as React.ComponentPropsWithoutRef<typeof motion.ul>)}
@@ -70,5 +70,5 @@ export function DockTooltip({ children, content }: { children: React.ReactNode; 
 }
 
 export function DockSeparator() {
-  return <li aria-hidden="true" className="mx-1.5 h-8 w-px bg-white/15" />;
+  return <li aria-hidden="true" className="mx-1.5 h-8 w-px bg-white/15 min-[1400px]:mx-2.5" />;
 }
