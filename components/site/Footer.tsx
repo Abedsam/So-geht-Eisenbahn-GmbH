@@ -2,6 +2,7 @@ import Link from "next/link";
 import { footerNav, site } from "@/content/site";
 import { CookieSettingsButton } from "./CookieBanner";
 import { Logo } from "./Logo";
+import { SocialIcon } from "./SocialIcon";
 
 export function Footer() {
   return (
@@ -37,9 +38,10 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`So geht Eisenbahn auf ${s.name}`}
-                className="rounded-full border border-white/20 px-3.5 py-[9px] text-sm font-semibold text-white no-underline transition-colors hover:border-blue hover:bg-blue hover:text-white"
+                title={s.name}
+                className="flex size-11 items-center justify-center rounded-full border border-white/20 text-white no-underline transition-[background-color,border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-blue hover:bg-blue hover:text-white"
               >
-                {s.name}
+                <SocialIcon name={s.name} />
               </a>
             ))}
           </div>
