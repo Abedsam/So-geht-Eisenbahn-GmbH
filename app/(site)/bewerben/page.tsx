@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { InfoCta, QuizCta } from "@/components/bewerben/CtaButtons";
-import { BewerbenFaq } from "@/components/bewerben/Faq";
+import Faqs01 from "@/components/ui/faqs-01";
 import { Quiz } from "@/components/bewerben/Quiz";
 import { Testimonials } from "@/components/bewerben/Testimonials";
-import { benefits, heroChecks, jobTasks, landingPartners, landingTeam, profile, timeline } from "@/content/bewerben";
+import { benefits, bewerbenFaq, heroChecks, jobTasks, landingPartners, landingTeam, profile, timeline } from "@/content/bewerben";
 import { nextCourseStart } from "@/content/site";
 import { asset } from "@/lib/asset";
 
@@ -313,14 +313,7 @@ export default function BewerbenPage() {
       </section>
 
       {/* 10 FAQ */}
-      <section className="section-y">
-        <div className="mx-auto flex max-w-[960px] flex-col gap-3 px-[clamp(20px,3vw,40px)]">
-          <h2 data-reveal="" className="h2 mb-6">
-            Fragen und Antworten.
-          </h2>
-          <BewerbenFaq />
-        </div>
-      </section>
+      <Faqs01 faqs={bewerbenFaq} title="Fragen und Antworten." defaultValue="item-0" className="bg-bg" />
 
       {/* 11 Final CTA */}
       <section className="relative overflow-hidden bg-navy text-white">

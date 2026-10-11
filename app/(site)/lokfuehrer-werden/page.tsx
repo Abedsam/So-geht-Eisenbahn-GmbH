@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { FaqAccordion } from "@/components/ausbildung/FaqAccordion";
+import Faqs01 from "@/components/ui/faqs-01";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { erwartung, kennzahlen, lokfuehrerFaq, requirements, route, testimonials } from "@/content/ausbildung";
 import { nextCourseStart } from "@/content/site";
@@ -245,15 +245,12 @@ export default function LokfuehrerWerdenPage() {
       </section>
 
       {/* 07 FAQ */}
-      <section className={`${sectionY} border-t border-line bg-white`}>
-        <div className="mx-auto flex max-w-[960px] flex-col gap-3 px-[clamp(20px,3vw,40px)]">
-          <h2 data-reveal="" className={`${h2} mb-6`}>
-            Fragen &amp; Antworten
-          </h2>
-          <FaqAccordion items={lokfuehrerFaq} />
-        </div>
-        <JsonLd data={faqJsonLd(lokfuehrerFaq)} />
-      </section>
+      <Faqs01
+        faqs={lokfuehrerFaq.map((f) => ({ q: f.question, a: f.answer }))}
+        defaultValue="item-0"
+        className="border-t border-line"
+      />
+      <JsonLd data={faqJsonLd(lokfuehrerFaq)} />
 
       {/* 08 Final CTA */}
       <section className="relative overflow-hidden bg-navy text-white">

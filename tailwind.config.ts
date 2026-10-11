@@ -23,7 +23,21 @@ const config: Config = {
           DEFAULT: "#E8EDF2",
           input: "#D5DEE7",
         },
-        muted: "#4B5B6E", // Fließtext sekundär
+        muted: {
+          DEFAULT: "#4B5B6E", // Fließtext sekundär
+          foreground: "#4B5B6E", // shadcn-Name für dieselbe Farbe
+        },
+        // shadcn/ui-Farbnamen, auf die Markenfarben abgebildet
+        background: "#FFFFFF",
+        foreground: "#071C35",
+        card: { DEFAULT: "#FFFFFF", foreground: "#071C35" },
+        border: "#E8EDF2",
+        input: "#D5DEE7",
+        ring: "#1689E8",
+        primary: { DEFAULT: "#005BAA", foreground: "#FFFFFF" },
+        secondary: { DEFAULT: "#F6F8FA", foreground: "#071C35" },
+        accent: { DEFAULT: "#F6F8FA", foreground: "#005BAA" },
+        destructive: { DEFAULT: "#B42318", foreground: "#FFFFFF" },
         "on-navy": {
           DEFAULT: "#DCE8F3",
           2: "#C5D6E6",
@@ -55,11 +69,15 @@ const config: Config = {
       },
       keyframes: {
         marquee: { from: { transform: "translateX(0)" }, to: { transform: "translateX(-50%)" } },
+        "accordion-down": { from: { height: "0" }, to: { height: "var(--radix-accordion-content-height)" } },
+        "accordion-up": { from: { height: "var(--radix-accordion-content-height)" }, to: { height: "0" } },
         bounce: { "0%,100%": { transform: "translateY(0)", opacity: ".5" }, "50%": { transform: "translateY(6px)", opacity: "1" } },
       },
       animation: {
         marquee: "marquee 40s linear infinite",
         hint: "bounce 1.6s ease-in-out infinite",
+        "accordion-down": "accordion-down .3s cubic-bezier(.2,.7,.2,1)",
+        "accordion-up": "accordion-up .25s cubic-bezier(.2,.7,.2,1)",
       },
     },
   },
