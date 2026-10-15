@@ -134,7 +134,6 @@ export function HomeHero() {
           aria-hidden="true"
           className="absolute bottom-10 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2.5 font-mono text-xs tracking-[.3em] text-white/80 transition-opacity duration-400 motion-reduce:hidden"
         >
-          <span>SCROLLEN</span>
           <span className="h-7 w-[1.5px] animate-hint bg-current" />
         </div>
         <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-[3px] bg-white/[.12]">
