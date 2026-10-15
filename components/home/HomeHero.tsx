@@ -24,7 +24,6 @@ export function HomeHero() {
   const img = useRef<HTMLImageElement>(null);
   const title = useRef<HTMLDivElement>(null);
   const tag = useRef<HTMLDivElement>(null);
-  const hint = useRef<HTMLDivElement>(null);
   const bar = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -52,7 +51,6 @@ export function HomeHero() {
           tg.style.transform = `translateY(${(1 - t) * 22}px)`;
           tg.style.filter = t > 0.995 ? "" : `blur(${(1 - t) * 8}px)`;
         }
-        if (hint.current) hint.current.style.opacity = p > 0.01 ? "0" : "1";
         if (bar.current) bar.current.style.transform = `scaleX(${p})`;
       }
       if (document.hidden) timer = setTimeout(loop, 32);
@@ -129,13 +127,6 @@ export function HomeHero() {
           </div>
         </div>
 
-        <div
-          ref={hint}
-          aria-hidden="true"
-          className="absolute bottom-10 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2.5 font-mono text-xs tracking-[.3em] text-white/80 transition-opacity duration-400 motion-reduce:hidden"
-        >
-          <span className="h-7 w-[1.5px] animate-hint bg-current" />
-        </div>
         <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-[3px] bg-white/[.12]">
           <div ref={bar} className="h-full origin-left scale-x-0 bg-gradient-to-r from-blue to-blue-hover" />
         </div>
